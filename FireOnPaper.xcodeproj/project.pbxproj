@@ -7,30 +7,196 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2618B84D157DF54300BF5E77 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B846157DF54300BF5E77 /* Default.png */; };
+		2618B84E157DF54300BF5E77 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B847157DF54300BF5E77 /* Default@2x.png */; };
+		2618B84F157DF54300BF5E77 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B848157DF54300BF5E77 /* icon.png */; };
+		2618B850157DF54300BF5E77 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B849157DF54300BF5E77 /* icon@2x.png */; };
+		2618B851157DF54300BF5E77 /* texture0.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B84A157DF54300BF5E77 /* texture0.png */; };
+		2618B852157DF54300BF5E77 /* texture1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B84B157DF54300BF5E77 /* texture1.png */; };
+		2618B853157DF54300BF5E77 /* texture2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2618B84C157DF54300BF5E77 /* texture2.png */; };
+		2618B8C0157DF5BF00BF5E77 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618B8BE157DF5AA00BF5E77 /* QuartzCore.framework */; };
+		2618B8C1157DF5BF00BF5E77 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618B8BC157DF5A200BF5E77 /* CoreMotion.framework */; };
+		2618B8C2157DF5BF00BF5E77 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618B8BA157DF59B00BF5E77 /* AVFoundation.framework */; };
+		2618B8D6157DF61800BF5E77 /* CFireParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8C4157DF61800BF5E77 /* CFireParticle.cpp */; };
+		2618B8D7157DF61800BF5E77 /* CFireParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8C6157DF61800BF5E77 /* CFireParticleSystem.cpp */; };
+		2618B8D8157DF61800BF5E77 /* Paper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8CC157DF61800BF5E77 /* Paper.cpp */; };
+		2618B8D9157DF61800BF5E77 /* PaperUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8CE157DF61800BF5E77 /* PaperUnit.cpp */; };
+		2618B8DB157DF61800BF5E77 /* SpaceUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8D3157DF61800BF5E77 /* SpaceUnit.cpp */; };
+		2618B8DD157DF79A00BF5E77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618B8DC157DF79A00BF5E77 /* OpenGLES.framework */; };
+		26B6BEBD157DF8DD00289FE4 /* FireOnPaperEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */; };
+		26B6BF00157E048E00289FE4 /* OpenGLES11Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC4157E048E00289FE4 /* OpenGLES11Context.cpp */; };
+		26B6BF01157E048E00289FE4 /* OpenGLES11Implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC6157E048E00289FE4 /* OpenGLES11Implementation.cpp */; };
+		26B6BF02157E048E00289FE4 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC9157E048E00289FE4 /* Attribute.cpp */; };
+		26B6BF03157E048E00289FE4 /* MatrixStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BECB157E048E00289FE4 /* MatrixStack.cpp */; };
+		26B6BF04157E048E00289FE4 /* OpenGLES20Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BECD157E048E00289FE4 /* OpenGLES20Context.cpp */; };
+		26B6BF05157E048E00289FE4 /* OpenGLES20Implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BECF157E048E00289FE4 /* OpenGLES20Implementation.cpp */; };
+		26B6BF06157E048E00289FE4 /* OpenGLESState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BED1157E048E00289FE4 /* OpenGLESState.cpp */; };
+		26B6BF07157E048E00289FE4 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BED3157E048E00289FE4 /* Shader.cpp */; };
+		26B6BF08157E048E00289FE4 /* ShaderFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BED5157E048E00289FE4 /* ShaderFile.cpp */; };
+		26B6BF09157E048E00289FE4 /* ShaderProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BED7157E048E00289FE4 /* ShaderProgram.cpp */; };
+		26B6BF0A157E048E00289FE4 /* alphaTest.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEDA157E048E00289FE4 /* alphaTest.frag */; };
+		26B6BF0B157E048E00289FE4 /* clipPlane.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEDB157E048E00289FE4 /* clipPlane.frag */; };
+		26B6BF0C157E048E00289FE4 /* clipPlane.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEDC157E048E00289FE4 /* clipPlane.vert */; };
+		26B6BF0D157E048E00289FE4 /* fog.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDD157E048E00289FE4 /* fog.glsl */; };
+		26B6BF0E157E048E00289FE4 /* lighting.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEDE157E048E00289FE4 /* lighting.frag */; };
+		26B6BF0F157E048E00289FE4 /* lighting.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEDF157E048E00289FE4 /* lighting.vert */; };
+		26B6BF10157E048E00289FE4 /* lightingPerFragment.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE0157E048E00289FE4 /* lightingPerFragment.frag */; };
+		26B6BF11157E048E00289FE4 /* lightingPerFragment.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE1157E048E00289FE4 /* lightingPerFragment.vert */; };
+		26B6BF12157E048E00289FE4 /* lightingPerVertex.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE2157E048E00289FE4 /* lightingPerVertex.vert */; };
+		26B6BF13157E048E00289FE4 /* main.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE3157E048E00289FE4 /* main.frag */; };
+		26B6BF14157E048E00289FE4 /* main.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE4157E048E00289FE4 /* main.vert */; };
+		26B6BF15157E048E00289FE4 /* postprocess.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE5157E048E00289FE4 /* postprocess.frag */; };
+		26B6BF16157E048E00289FE4 /* postprocess.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE6157E048E00289FE4 /* postprocess.vert */; };
+		26B6BF17157E048E00289FE4 /* texture.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE7157E048E00289FE4 /* texture.frag */; };
+		26B6BF18157E048E00289FE4 /* texture.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE8157E048E00289FE4 /* texture.vert */; };
+		26B6BF19157E048E00289FE4 /* texture0.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEE9157E048E00289FE4 /* texture0.frag */; };
+		26B6BF1A157E048E00289FE4 /* texture0.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEEA157E048E00289FE4 /* texture0.vert */; };
+		26B6BF1B157E048E00289FE4 /* texture1.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEEB157E048E00289FE4 /* texture1.frag */; };
+		26B6BF1C157E048E00289FE4 /* texture1.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEEC157E048E00289FE4 /* texture1.vert */; };
+		26B6BF1D157E048E00289FE4 /* texture2.frag in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEED157E048E00289FE4 /* texture2.frag */; };
+		26B6BF1E157E048E00289FE4 /* texture2.vert in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEEE157E048E00289FE4 /* texture2.vert */; };
+		26B6BF1F157E048E00289FE4 /* ShaderSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEEF157E048E00289FE4 /* ShaderSource.cpp */; };
+		26B6BF20157E048E00289FE4 /* Uniform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEF1157E048E00289FE4 /* Uniform.cpp */; };
+		26B6BF21157E048E00289FE4 /* OpenGLESConfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEF3157E048E00289FE4 /* OpenGLESConfig.cpp */; };
+		26B6BF22157E048E00289FE4 /* OpenGLESContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEF5157E048E00289FE4 /* OpenGLESContext.cpp */; };
+		26B6BF23157E048E00289FE4 /* OpenGLESFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEF8157E048E00289FE4 /* OpenGLESFile.mm */; };
+		26B6BF24157E048E00289FE4 /* OpenGLESImplementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEF9157E048E00289FE4 /* OpenGLESImplementation.cpp */; };
+		26B6BF25157E048E00289FE4 /* OpenGLESString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEFC157E048E00289FE4 /* OpenGLESString.cpp */; };
+		26B6BF26157E048E00289FE4 /* OpenGLESUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEFE157E048E00289FE4 /* OpenGLESUtil.cpp */; };
+		26B6BF27157E151A00289FE4 /* alphaTest.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDA157E048E00289FE4 /* alphaTest.frag */; };
+		26B6BF28157E151A00289FE4 /* clipPlane.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDB157E048E00289FE4 /* clipPlane.frag */; };
+		26B6BF29157E151A00289FE4 /* clipPlane.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDC157E048E00289FE4 /* clipPlane.vert */; };
+		26B6BF2A157E151A00289FE4 /* lighting.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDE157E048E00289FE4 /* lighting.frag */; };
+		26B6BF2B157E151A00289FE4 /* lighting.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEDF157E048E00289FE4 /* lighting.vert */; };
+		26B6BF2C157E151A00289FE4 /* lightingPerFragment.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE0157E048E00289FE4 /* lightingPerFragment.frag */; };
+		26B6BF2D157E151A00289FE4 /* lightingPerFragment.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE1157E048E00289FE4 /* lightingPerFragment.vert */; };
+		26B6BF2E157E151A00289FE4 /* lightingPerVertex.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE2157E048E00289FE4 /* lightingPerVertex.vert */; };
+		26B6BF2F157E151A00289FE4 /* main.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE3157E048E00289FE4 /* main.frag */; };
+		26B6BF30157E151A00289FE4 /* main.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE4157E048E00289FE4 /* main.vert */; };
+		26B6BF31157E151A00289FE4 /* postprocess.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE5157E048E00289FE4 /* postprocess.frag */; };
+		26B6BF32157E151A00289FE4 /* postprocess.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE6157E048E00289FE4 /* postprocess.vert */; };
+		26B6BF33157E151A00289FE4 /* texture.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE7157E048E00289FE4 /* texture.frag */; };
+		26B6BF34157E151A00289FE4 /* texture.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE8157E048E00289FE4 /* texture.vert */; };
+		26B6BF35157E151A00289FE4 /* texture0.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEE9157E048E00289FE4 /* texture0.frag */; };
+		26B6BF36157E151A00289FE4 /* texture0.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEEA157E048E00289FE4 /* texture0.vert */; };
+		26B6BF37157E151A00289FE4 /* texture1.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEEB157E048E00289FE4 /* texture1.frag */; };
+		26B6BF38157E151A00289FE4 /* texture1.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEEC157E048E00289FE4 /* texture1.vert */; };
+		26B6BF39157E151A00289FE4 /* texture2.frag in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEED157E048E00289FE4 /* texture2.frag */; };
+		26B6BF3A157E151A00289FE4 /* texture2.vert in Resources */ = {isa = PBXBuildFile; fileRef = 26B6BEEE157E048E00289FE4 /* texture2.vert */; };
 		26CF5334157DF244004394B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5333157DF244004394B9 /* UIKit.framework */; };
 		26CF5336157DF244004394B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5335157DF244004394B9 /* Foundation.framework */; };
 		26CF5338157DF244004394B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5337157DF244004394B9 /* CoreGraphics.framework */; };
 		26CF533E157DF244004394B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26CF533C157DF244004394B9 /* InfoPlist.strings */; };
-		26CF5340157DF244004394B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF533F157DF244004394B9 /* main.m */; };
-		26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */; };
-		26CF5347157DF244004394B9 /* FireOnPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5346157DF244004394B9 /* FireOnPaperViewController.m */; };
+		26CF5340157DF244004394B9 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26CF533F157DF244004394B9 /* main.mm */; };
+		26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.mm */; };
+		26CF5347157DF244004394B9 /* FireOnPaperViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5346157DF244004394B9 /* FireOnPaperViewController.mm */; };
 		26CF534A157DF244004394B9 /* FireOnPaperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */; };
+		26CF5352157DF2B8004394B9 /* FireOnPaperGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5351157DF2B8004394B9 /* FireOnPaperGLView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2618B846157DF54300BF5E77 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		2618B847157DF54300BF5E77 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2618B848157DF54300BF5E77 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		2618B849157DF54300BF5E77 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		2618B84A157DF54300BF5E77 /* texture0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture0.png; sourceTree = "<group>"; };
+		2618B84B157DF54300BF5E77 /* texture1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture1.png; sourceTree = "<group>"; };
+		2618B84C157DF54300BF5E77 /* texture2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture2.png; sourceTree = "<group>"; };
+		2618B8BA157DF59B00BF5E77 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2618B8BC157DF5A200BF5E77 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		2618B8BE157DF5AA00BF5E77 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		2618B8C4157DF61800BF5E77 /* CFireParticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFireParticle.cpp; sourceTree = "<group>"; };
+		2618B8C5157DF61800BF5E77 /* CFireParticle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CFireParticle.hpp; sourceTree = "<group>"; };
+		2618B8C6157DF61800BF5E77 /* CFireParticleSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFireParticleSystem.cpp; sourceTree = "<group>"; };
+		2618B8C7157DF61800BF5E77 /* CFireParticleSystem.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CFireParticleSystem.hpp; sourceTree = "<group>"; };
+		2618B8C8157DF61800BF5E77 /* Vector3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector3D.hpp; sourceTree = "<group>"; };
+		2618B8CA157DF61800BF5E77 /* DrawTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DrawTree.hpp; sourceTree = "<group>"; };
+		2618B8CB157DF61800BF5E77 /* Matrix.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Matrix.hpp; sourceTree = "<group>"; };
+		2618B8CC157DF61800BF5E77 /* Paper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Paper.cpp; sourceTree = "<group>"; };
+		2618B8CD157DF61800BF5E77 /* Paper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Paper.hpp; sourceTree = "<group>"; };
+		2618B8CE157DF61800BF5E77 /* PaperUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PaperUnit.cpp; sourceTree = "<group>"; };
+		2618B8CF157DF61800BF5E77 /* PaperUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PaperUnit.hpp; sourceTree = "<group>"; };
+		2618B8D0157DF61800BF5E77 /* Parameters.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Parameters.hpp; sourceTree = "<group>"; };
+		2618B8D3157DF61800BF5E77 /* SpaceUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceUnit.cpp; sourceTree = "<group>"; };
+		2618B8D4157DF61800BF5E77 /* SpaceUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpaceUnit.hpp; sourceTree = "<group>"; };
+		2618B8D5157DF61800BF5E77 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
+		2618B8DC157DF79A00BF5E77 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FireOnPaperEngine.cpp; sourceTree = "<group>"; };
+		26B6BEC0157DF99000289FE4 /* FireOnPaperEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEngine.hpp; sourceTree = "<group>"; };
+		26B6BEC1157DFA4E00289FE4 /* FireOnPaperEnv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEnv.hpp; sourceTree = "<group>"; };
+		26B6BEC4157E048E00289FE4 /* OpenGLES11Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLES11Context.cpp; sourceTree = "<group>"; };
+		26B6BEC5157E048E00289FE4 /* OpenGLES11Context.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLES11Context.hpp; sourceTree = "<group>"; };
+		26B6BEC6157E048E00289FE4 /* OpenGLES11Implementation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLES11Implementation.cpp; sourceTree = "<group>"; };
+		26B6BEC7157E048E00289FE4 /* OpenGLES11Implementation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLES11Implementation.hpp; sourceTree = "<group>"; };
+		26B6BEC9157E048E00289FE4 /* Attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attribute.cpp; sourceTree = "<group>"; };
+		26B6BECA157E048E00289FE4 /* Attribute.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Attribute.hpp; sourceTree = "<group>"; };
+		26B6BECB157E048E00289FE4 /* MatrixStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixStack.cpp; sourceTree = "<group>"; };
+		26B6BECC157E048E00289FE4 /* MatrixStack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MatrixStack.hpp; sourceTree = "<group>"; };
+		26B6BECD157E048E00289FE4 /* OpenGLES20Context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLES20Context.cpp; sourceTree = "<group>"; };
+		26B6BECE157E048E00289FE4 /* OpenGLES20Context.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLES20Context.hpp; sourceTree = "<group>"; };
+		26B6BECF157E048E00289FE4 /* OpenGLES20Implementation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLES20Implementation.cpp; sourceTree = "<group>"; };
+		26B6BED0157E048E00289FE4 /* OpenGLES20Implementation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLES20Implementation.hpp; sourceTree = "<group>"; };
+		26B6BED1157E048E00289FE4 /* OpenGLESState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESState.cpp; sourceTree = "<group>"; };
+		26B6BED2157E048E00289FE4 /* OpenGLESState.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESState.hpp; sourceTree = "<group>"; };
+		26B6BED3157E048E00289FE4 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		26B6BED4157E048E00289FE4 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		26B6BED5157E048E00289FE4 /* ShaderFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderFile.cpp; sourceTree = "<group>"; };
+		26B6BED6157E048E00289FE4 /* ShaderFile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderFile.hpp; sourceTree = "<group>"; };
+		26B6BED7157E048E00289FE4 /* ShaderProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderProgram.cpp; sourceTree = "<group>"; };
+		26B6BED8157E048E00289FE4 /* ShaderProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderProgram.hpp; sourceTree = "<group>"; };
+		26B6BEDA157E048E00289FE4 /* alphaTest.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = alphaTest.frag; sourceTree = "<group>"; };
+		26B6BEDB157E048E00289FE4 /* clipPlane.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = clipPlane.frag; sourceTree = "<group>"; };
+		26B6BEDC157E048E00289FE4 /* clipPlane.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = clipPlane.vert; sourceTree = "<group>"; };
+		26B6BEDD157E048E00289FE4 /* fog.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fog.glsl; sourceTree = "<group>"; };
+		26B6BEDE157E048E00289FE4 /* lighting.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.frag; sourceTree = "<group>"; };
+		26B6BEDF157E048E00289FE4 /* lighting.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.vert; sourceTree = "<group>"; };
+		26B6BEE0157E048E00289FE4 /* lightingPerFragment.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lightingPerFragment.frag; sourceTree = "<group>"; };
+		26B6BEE1157E048E00289FE4 /* lightingPerFragment.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lightingPerFragment.vert; sourceTree = "<group>"; };
+		26B6BEE2157E048E00289FE4 /* lightingPerVertex.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lightingPerVertex.vert; sourceTree = "<group>"; };
+		26B6BEE3157E048E00289FE4 /* main.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = main.frag; sourceTree = "<group>"; };
+		26B6BEE4157E048E00289FE4 /* main.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = main.vert; sourceTree = "<group>"; };
+		26B6BEE5157E048E00289FE4 /* postprocess.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postprocess.frag; sourceTree = "<group>"; };
+		26B6BEE6157E048E00289FE4 /* postprocess.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postprocess.vert; sourceTree = "<group>"; };
+		26B6BEE7157E048E00289FE4 /* texture.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.frag; sourceTree = "<group>"; };
+		26B6BEE8157E048E00289FE4 /* texture.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.vert; sourceTree = "<group>"; };
+		26B6BEE9157E048E00289FE4 /* texture0.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture0.frag; sourceTree = "<group>"; };
+		26B6BEEA157E048E00289FE4 /* texture0.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture0.vert; sourceTree = "<group>"; };
+		26B6BEEB157E048E00289FE4 /* texture1.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture1.frag; sourceTree = "<group>"; };
+		26B6BEEC157E048E00289FE4 /* texture1.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture1.vert; sourceTree = "<group>"; };
+		26B6BEED157E048E00289FE4 /* texture2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture2.frag; sourceTree = "<group>"; };
+		26B6BEEE157E048E00289FE4 /* texture2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture2.vert; sourceTree = "<group>"; };
+		26B6BEEF157E048E00289FE4 /* ShaderSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderSource.cpp; sourceTree = "<group>"; };
+		26B6BEF0157E048E00289FE4 /* ShaderSource.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ShaderSource.hpp; sourceTree = "<group>"; };
+		26B6BEF1157E048E00289FE4 /* Uniform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Uniform.cpp; sourceTree = "<group>"; };
+		26B6BEF2157E048E00289FE4 /* Uniform.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Uniform.hpp; sourceTree = "<group>"; };
+		26B6BEF3157E048E00289FE4 /* OpenGLESConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESConfig.cpp; sourceTree = "<group>"; };
+		26B6BEF4157E048E00289FE4 /* OpenGLESConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESConfig.hpp; sourceTree = "<group>"; };
+		26B6BEF5157E048E00289FE4 /* OpenGLESContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESContext.cpp; sourceTree = "<group>"; };
+		26B6BEF6157E048E00289FE4 /* OpenGLESContext.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESContext.hpp; sourceTree = "<group>"; };
+		26B6BEF7157E048E00289FE4 /* OpenGLESFile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESFile.hpp; sourceTree = "<group>"; };
+		26B6BEF8157E048E00289FE4 /* OpenGLESFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenGLESFile.mm; sourceTree = "<group>"; };
+		26B6BEF9157E048E00289FE4 /* OpenGLESImplementation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESImplementation.cpp; sourceTree = "<group>"; };
+		26B6BEFA157E048E00289FE4 /* OpenGLESImplementation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESImplementation.hpp; sourceTree = "<group>"; };
+		26B6BEFB157E048E00289FE4 /* OpenGLESMath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESMath.hpp; sourceTree = "<group>"; };
+		26B6BEFC157E048E00289FE4 /* OpenGLESString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESString.cpp; sourceTree = "<group>"; };
+		26B6BEFD157E048E00289FE4 /* OpenGLESString.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESString.hpp; sourceTree = "<group>"; };
+		26B6BEFE157E048E00289FE4 /* OpenGLESUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLESUtil.cpp; sourceTree = "<group>"; };
+		26B6BEFF157E048E00289FE4 /* OpenGLESUtil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = OpenGLESUtil.hpp; sourceTree = "<group>"; };
 		26CF532F157DF244004394B9 /* FireOnPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireOnPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26CF5333157DF244004394B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		26CF5335157DF244004394B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		26CF5337157DF244004394B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		26CF533B157DF244004394B9 /* FireOnPaper-Info.plist */ = {isa = PBXFileReference; path = "FireOnPaper-Info.plist"; sourceTree = "<group>"; };
+		26CF533B157DF244004394B9 /* FireOnPaper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FireOnPaper-Info.plist"; sourceTree = "<group>"; };
 		26CF533D157DF244004394B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		26CF533F157DF244004394B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		26CF5341157DF244004394B9 /* FireOnPaper-Prefix.pch */ = {isa = PBXFileReference; path = "FireOnPaper-Prefix.pch"; sourceTree = "<group>"; };
-		26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */ = {isa = PBXFileReference; path = FireOnPaperAppDelegate.h; sourceTree = "<group>"; };
-		26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FireOnPaperAppDelegate.m; sourceTree = "<group>"; };
-		26CF5345157DF244004394B9 /* FireOnPaperViewController.h */ = {isa = PBXFileReference; path = FireOnPaperViewController.h; sourceTree = "<group>"; };
-		26CF5346157DF244004394B9 /* FireOnPaperViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FireOnPaperViewController.m; sourceTree = "<group>"; };
+		26CF533F157DF244004394B9 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		26CF5341157DF244004394B9 /* FireOnPaper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FireOnPaper-Prefix.pch"; sourceTree = "<group>"; };
+		26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FireOnPaperAppDelegate.h; sourceTree = "<group>"; };
+		26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FireOnPaperAppDelegate.mm; sourceTree = "<group>"; };
+		26CF5345157DF244004394B9 /* FireOnPaperViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FireOnPaperViewController.h; sourceTree = "<group>"; };
+		26CF5346157DF244004394B9 /* FireOnPaperViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = FireOnPaperViewController.mm; sourceTree = "<group>"; };
 		26CF5349157DF244004394B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FireOnPaperViewController.xib; sourceTree = "<group>"; };
+		26CF5350157DF2B8004394B9 /* FireOnPaperGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireOnPaperGLView.h; sourceTree = "<group>"; };
+		26CF5351157DF2B8004394B9 /* FireOnPaperGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FireOnPaperGLView.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +204,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2618B8C0157DF5BF00BF5E77 /* QuartzCore.framework in Frameworks */,
+				2618B8C1157DF5BF00BF5E77 /* CoreMotion.framework in Frameworks */,
+				2618B8DD157DF79A00BF5E77 /* OpenGLES.framework in Frameworks */,
+				2618B8C2157DF5BF00BF5E77 /* AVFoundation.framework in Frameworks */,
 				26CF5334157DF244004394B9 /* UIKit.framework in Frameworks */,
 				26CF5336157DF244004394B9 /* Foundation.framework in Frameworks */,
 				26CF5338157DF244004394B9 /* CoreGraphics.framework in Frameworks */,
@@ -47,9 +217,145 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2618B845157DF54300BF5E77 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2618B846157DF54300BF5E77 /* Default.png */,
+				2618B847157DF54300BF5E77 /* Default@2x.png */,
+				2618B848157DF54300BF5E77 /* icon.png */,
+				2618B849157DF54300BF5E77 /* icon@2x.png */,
+				2618B84A157DF54300BF5E77 /* texture0.png */,
+				2618B84B157DF54300BF5E77 /* texture1.png */,
+				2618B84C157DF54300BF5E77 /* texture2.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		2618B8C3157DF61800BF5E77 /* Fire */ = {
+			isa = PBXGroup;
+			children = (
+				2618B8C4157DF61800BF5E77 /* CFireParticle.cpp */,
+				2618B8C5157DF61800BF5E77 /* CFireParticle.hpp */,
+				2618B8C6157DF61800BF5E77 /* CFireParticleSystem.cpp */,
+				2618B8C7157DF61800BF5E77 /* CFireParticleSystem.hpp */,
+				2618B8C8157DF61800BF5E77 /* Vector3D.hpp */,
+			);
+			path = Fire;
+			sourceTree = "<group>";
+		};
+		2618B8C9157DF61800BF5E77 /* Paper */ = {
+			isa = PBXGroup;
+			children = (
+				2618B8CA157DF61800BF5E77 /* DrawTree.hpp */,
+				2618B8CB157DF61800BF5E77 /* Matrix.hpp */,
+				2618B8CC157DF61800BF5E77 /* Paper.cpp */,
+				2618B8CD157DF61800BF5E77 /* Paper.hpp */,
+				2618B8CE157DF61800BF5E77 /* PaperUnit.cpp */,
+				2618B8CF157DF61800BF5E77 /* PaperUnit.hpp */,
+				2618B8D0157DF61800BF5E77 /* Parameters.hpp */,
+				2618B8D3157DF61800BF5E77 /* SpaceUnit.cpp */,
+				2618B8D4157DF61800BF5E77 /* SpaceUnit.hpp */,
+				2618B8D5157DF61800BF5E77 /* Vector.hpp */,
+			);
+			path = Paper;
+			sourceTree = "<group>";
+		};
+		26B6BEC2157E048E00289FE4 /* OpenGLES */ = {
+			isa = PBXGroup;
+			children = (
+				26B6BEC3157E048E00289FE4 /* OpenGLES11 */,
+				26B6BEC8157E048E00289FE4 /* OpenGLES20 */,
+				26B6BEF3157E048E00289FE4 /* OpenGLESConfig.cpp */,
+				26B6BEF4157E048E00289FE4 /* OpenGLESConfig.hpp */,
+				26B6BEF5157E048E00289FE4 /* OpenGLESContext.cpp */,
+				26B6BEF6157E048E00289FE4 /* OpenGLESContext.hpp */,
+				26B6BEF7157E048E00289FE4 /* OpenGLESFile.hpp */,
+				26B6BEF8157E048E00289FE4 /* OpenGLESFile.mm */,
+				26B6BEF9157E048E00289FE4 /* OpenGLESImplementation.cpp */,
+				26B6BEFA157E048E00289FE4 /* OpenGLESImplementation.hpp */,
+				26B6BEFB157E048E00289FE4 /* OpenGLESMath.hpp */,
+				26B6BEFC157E048E00289FE4 /* OpenGLESString.cpp */,
+				26B6BEFD157E048E00289FE4 /* OpenGLESString.hpp */,
+				26B6BEFE157E048E00289FE4 /* OpenGLESUtil.cpp */,
+				26B6BEFF157E048E00289FE4 /* OpenGLESUtil.hpp */,
+			);
+			path = OpenGLES;
+			sourceTree = "<group>";
+		};
+		26B6BEC3157E048E00289FE4 /* OpenGLES11 */ = {
+			isa = PBXGroup;
+			children = (
+				26B6BEC4157E048E00289FE4 /* OpenGLES11Context.cpp */,
+				26B6BEC5157E048E00289FE4 /* OpenGLES11Context.hpp */,
+				26B6BEC6157E048E00289FE4 /* OpenGLES11Implementation.cpp */,
+				26B6BEC7157E048E00289FE4 /* OpenGLES11Implementation.hpp */,
+			);
+			path = OpenGLES11;
+			sourceTree = "<group>";
+		};
+		26B6BEC8157E048E00289FE4 /* OpenGLES20 */ = {
+			isa = PBXGroup;
+			children = (
+				26B6BEC9157E048E00289FE4 /* Attribute.cpp */,
+				26B6BECA157E048E00289FE4 /* Attribute.hpp */,
+				26B6BECB157E048E00289FE4 /* MatrixStack.cpp */,
+				26B6BECC157E048E00289FE4 /* MatrixStack.hpp */,
+				26B6BECD157E048E00289FE4 /* OpenGLES20Context.cpp */,
+				26B6BECE157E048E00289FE4 /* OpenGLES20Context.hpp */,
+				26B6BECF157E048E00289FE4 /* OpenGLES20Implementation.cpp */,
+				26B6BED0157E048E00289FE4 /* OpenGLES20Implementation.hpp */,
+				26B6BED1157E048E00289FE4 /* OpenGLESState.cpp */,
+				26B6BED2157E048E00289FE4 /* OpenGLESState.hpp */,
+				26B6BED3157E048E00289FE4 /* Shader.cpp */,
+				26B6BED4157E048E00289FE4 /* Shader.hpp */,
+				26B6BED5157E048E00289FE4 /* ShaderFile.cpp */,
+				26B6BED6157E048E00289FE4 /* ShaderFile.hpp */,
+				26B6BED7157E048E00289FE4 /* ShaderProgram.cpp */,
+				26B6BED8157E048E00289FE4 /* ShaderProgram.hpp */,
+				26B6BED9157E048E00289FE4 /* shaders */,
+				26B6BEEF157E048E00289FE4 /* ShaderSource.cpp */,
+				26B6BEF0157E048E00289FE4 /* ShaderSource.hpp */,
+				26B6BEF1157E048E00289FE4 /* Uniform.cpp */,
+				26B6BEF2157E048E00289FE4 /* Uniform.hpp */,
+			);
+			path = OpenGLES20;
+			sourceTree = "<group>";
+		};
+		26B6BED9157E048E00289FE4 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				26B6BEDA157E048E00289FE4 /* alphaTest.frag */,
+				26B6BEDB157E048E00289FE4 /* clipPlane.frag */,
+				26B6BEDC157E048E00289FE4 /* clipPlane.vert */,
+				26B6BEDD157E048E00289FE4 /* fog.glsl */,
+				26B6BEDE157E048E00289FE4 /* lighting.frag */,
+				26B6BEDF157E048E00289FE4 /* lighting.vert */,
+				26B6BEE0157E048E00289FE4 /* lightingPerFragment.frag */,
+				26B6BEE1157E048E00289FE4 /* lightingPerFragment.vert */,
+				26B6BEE2157E048E00289FE4 /* lightingPerVertex.vert */,
+				26B6BEE3157E048E00289FE4 /* main.frag */,
+				26B6BEE4157E048E00289FE4 /* main.vert */,
+				26B6BEE5157E048E00289FE4 /* postprocess.frag */,
+				26B6BEE6157E048E00289FE4 /* postprocess.vert */,
+				26B6BEE7157E048E00289FE4 /* texture.frag */,
+				26B6BEE8157E048E00289FE4 /* texture.vert */,
+				26B6BEE9157E048E00289FE4 /* texture0.frag */,
+				26B6BEEA157E048E00289FE4 /* texture0.vert */,
+				26B6BEEB157E048E00289FE4 /* texture1.frag */,
+				26B6BEEC157E048E00289FE4 /* texture1.vert */,
+				26B6BEED157E048E00289FE4 /* texture2.frag */,
+				26B6BEEE157E048E00289FE4 /* texture2.vert */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
 		26CF5324157DF244004394B9 = {
 			isa = PBXGroup;
 			children = (
+				26B6BEC2157E048E00289FE4 /* OpenGLES */,
+				2618B8C3157DF61800BF5E77 /* Fire */,
+				2618B8C9157DF61800BF5E77 /* Paper */,
+				2618B845157DF54300BF5E77 /* Resource */,
 				26CF5339157DF244004394B9 /* FireOnPaper */,
 				26CF5332157DF244004394B9 /* Frameworks */,
 				26CF5330157DF244004394B9 /* Products */,
@@ -67,6 +373,10 @@
 		26CF5332157DF244004394B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2618B8DC157DF79A00BF5E77 /* OpenGLES.framework */,
+				2618B8BE157DF5AA00BF5E77 /* QuartzCore.framework */,
+				2618B8BC157DF5A200BF5E77 /* CoreMotion.framework */,
+				2618B8BA157DF59B00BF5E77 /* AVFoundation.framework */,
 				26CF5333157DF244004394B9 /* UIKit.framework */,
 				26CF5335157DF244004394B9 /* Foundation.framework */,
 				26CF5337157DF244004394B9 /* CoreGraphics.framework */,
@@ -78,11 +388,16 @@
 			isa = PBXGroup;
 			children = (
 				26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */,
-				26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */,
+				26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.mm */,
 				26CF5345157DF244004394B9 /* FireOnPaperViewController.h */,
-				26CF5346157DF244004394B9 /* FireOnPaperViewController.m */,
+				26CF5346157DF244004394B9 /* FireOnPaperViewController.mm */,
 				26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */,
 				26CF533A157DF244004394B9 /* Supporting Files */,
+				26CF5350157DF2B8004394B9 /* FireOnPaperGLView.h */,
+				26CF5351157DF2B8004394B9 /* FireOnPaperGLView.mm */,
+				26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */,
+				26B6BEC0157DF99000289FE4 /* FireOnPaperEngine.hpp */,
+				26B6BEC1157DFA4E00289FE4 /* FireOnPaperEnv.hpp */,
 			);
 			path = FireOnPaper;
 			sourceTree = "<group>";
@@ -92,7 +407,7 @@
 			children = (
 				26CF533B157DF244004394B9 /* FireOnPaper-Info.plist */,
 				26CF533C157DF244004394B9 /* InfoPlist.strings */,
-				26CF533F157DF244004394B9 /* main.m */,
+				26CF533F157DF244004394B9 /* main.mm */,
 				26CF5341157DF244004394B9 /* FireOnPaper-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -150,8 +465,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26B6BF27157E151A00289FE4 /* alphaTest.frag in Resources */,
+				26B6BF28157E151A00289FE4 /* clipPlane.frag in Resources */,
+				26B6BF29157E151A00289FE4 /* clipPlane.vert in Resources */,
+				26B6BF2A157E151A00289FE4 /* lighting.frag in Resources */,
+				26B6BF2B157E151A00289FE4 /* lighting.vert in Resources */,
+				26B6BF2C157E151A00289FE4 /* lightingPerFragment.frag in Resources */,
+				26B6BF2D157E151A00289FE4 /* lightingPerFragment.vert in Resources */,
+				26B6BF2E157E151A00289FE4 /* lightingPerVertex.vert in Resources */,
+				26B6BF2F157E151A00289FE4 /* main.frag in Resources */,
+				26B6BF30157E151A00289FE4 /* main.vert in Resources */,
+				26B6BF31157E151A00289FE4 /* postprocess.frag in Resources */,
+				26B6BF32157E151A00289FE4 /* postprocess.vert in Resources */,
+				26B6BF33157E151A00289FE4 /* texture.frag in Resources */,
+				26B6BF34157E151A00289FE4 /* texture.vert in Resources */,
+				26B6BF35157E151A00289FE4 /* texture0.frag in Resources */,
+				26B6BF36157E151A00289FE4 /* texture0.vert in Resources */,
+				26B6BF37157E151A00289FE4 /* texture1.frag in Resources */,
+				26B6BF38157E151A00289FE4 /* texture1.vert in Resources */,
+				26B6BF39157E151A00289FE4 /* texture2.frag in Resources */,
+				26B6BF3A157E151A00289FE4 /* texture2.vert in Resources */,
 				26CF533E157DF244004394B9 /* InfoPlist.strings in Resources */,
 				26CF534A157DF244004394B9 /* FireOnPaperViewController.xib in Resources */,
+				2618B84D157DF54300BF5E77 /* Default.png in Resources */,
+				2618B84E157DF54300BF5E77 /* Default@2x.png in Resources */,
+				2618B84F157DF54300BF5E77 /* icon.png in Resources */,
+				2618B850157DF54300BF5E77 /* icon@2x.png in Resources */,
+				2618B851157DF54300BF5E77 /* texture0.png in Resources */,
+				2618B852157DF54300BF5E77 /* texture1.png in Resources */,
+				2618B853157DF54300BF5E77 /* texture2.png in Resources */,
+				26B6BF0D157E048E00289FE4 /* fog.glsl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,9 +505,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26CF5340157DF244004394B9 /* main.m in Sources */,
-				26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.m in Sources */,
-				26CF5347157DF244004394B9 /* FireOnPaperViewController.m in Sources */,
+				26CF5340157DF244004394B9 /* main.mm in Sources */,
+				26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.mm in Sources */,
+				26CF5347157DF244004394B9 /* FireOnPaperViewController.mm in Sources */,
+				26CF5352157DF2B8004394B9 /* FireOnPaperGLView.mm in Sources */,
+				2618B8D6157DF61800BF5E77 /* CFireParticle.cpp in Sources */,
+				2618B8D7157DF61800BF5E77 /* CFireParticleSystem.cpp in Sources */,
+				2618B8D8157DF61800BF5E77 /* Paper.cpp in Sources */,
+				2618B8D9157DF61800BF5E77 /* PaperUnit.cpp in Sources */,
+				2618B8DB157DF61800BF5E77 /* SpaceUnit.cpp in Sources */,
+				26B6BEBD157DF8DD00289FE4 /* FireOnPaperEngine.cpp in Sources */,
+				26B6BF00157E048E00289FE4 /* OpenGLES11Context.cpp in Sources */,
+				26B6BF01157E048E00289FE4 /* OpenGLES11Implementation.cpp in Sources */,
+				26B6BF02157E048E00289FE4 /* Attribute.cpp in Sources */,
+				26B6BF03157E048E00289FE4 /* MatrixStack.cpp in Sources */,
+				26B6BF04157E048E00289FE4 /* OpenGLES20Context.cpp in Sources */,
+				26B6BF05157E048E00289FE4 /* OpenGLES20Implementation.cpp in Sources */,
+				26B6BF06157E048E00289FE4 /* OpenGLESState.cpp in Sources */,
+				26B6BF07157E048E00289FE4 /* Shader.cpp in Sources */,
+				26B6BF08157E048E00289FE4 /* ShaderFile.cpp in Sources */,
+				26B6BF09157E048E00289FE4 /* ShaderProgram.cpp in Sources */,
+				26B6BF0A157E048E00289FE4 /* alphaTest.frag in Sources */,
+				26B6BF0B157E048E00289FE4 /* clipPlane.frag in Sources */,
+				26B6BF0C157E048E00289FE4 /* clipPlane.vert in Sources */,
+				26B6BF0E157E048E00289FE4 /* lighting.frag in Sources */,
+				26B6BF0F157E048E00289FE4 /* lighting.vert in Sources */,
+				26B6BF10157E048E00289FE4 /* lightingPerFragment.frag in Sources */,
+				26B6BF11157E048E00289FE4 /* lightingPerFragment.vert in Sources */,
+				26B6BF12157E048E00289FE4 /* lightingPerVertex.vert in Sources */,
+				26B6BF13157E048E00289FE4 /* main.frag in Sources */,
+				26B6BF14157E048E00289FE4 /* main.vert in Sources */,
+				26B6BF15157E048E00289FE4 /* postprocess.frag in Sources */,
+				26B6BF16157E048E00289FE4 /* postprocess.vert in Sources */,
+				26B6BF17157E048E00289FE4 /* texture.frag in Sources */,
+				26B6BF18157E048E00289FE4 /* texture.vert in Sources */,
+				26B6BF19157E048E00289FE4 /* texture0.frag in Sources */,
+				26B6BF1A157E048E00289FE4 /* texture0.vert in Sources */,
+				26B6BF1B157E048E00289FE4 /* texture1.frag in Sources */,
+				26B6BF1C157E048E00289FE4 /* texture1.vert in Sources */,
+				26B6BF1D157E048E00289FE4 /* texture2.frag in Sources */,
+				26B6BF1E157E048E00289FE4 /* texture2.vert in Sources */,
+				26B6BF1F157E048E00289FE4 /* ShaderSource.cpp in Sources */,
+				26B6BF20157E048E00289FE4 /* Uniform.cpp in Sources */,
+				26B6BF21157E048E00289FE4 /* OpenGLESConfig.cpp in Sources */,
+				26B6BF22157E048E00289FE4 /* OpenGLESContext.cpp in Sources */,
+				26B6BF23157E048E00289FE4 /* OpenGLESFile.mm in Sources */,
+				26B6BF24157E048E00289FE4 /* OpenGLESImplementation.cpp in Sources */,
+				26B6BF25157E048E00289FE4 /* OpenGLESString.cpp in Sources */,
+				26B6BF26157E048E00289FE4 /* OpenGLESUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +662,7 @@
 				26CF534F157DF244004394B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

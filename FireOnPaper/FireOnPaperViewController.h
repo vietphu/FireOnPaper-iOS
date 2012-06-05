@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FireOnPaperGLView.h"
 
 @interface FireOnPaperViewController : UIViewController
 

@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders
+END
+texture.vert
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture.vert
+END
+lightingPerFragment.vert
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/lightingPerFragment.vert
+END
+lighting.frag
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/lighting.frag
+END
+lighting.vert
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/lighting.vert
+END
+clipPlane.frag
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/clipPlane.frag
+END
+clipPlane.vert
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/clipPlane.vert
+END
+lightingPerVertex.vert
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/lightingPerVertex.vert
+END
+texture0.frag
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture0.frag
+END
+texture1.frag
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture1.frag
+END
+texture0.vert
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture0.vert
+END
+texture1.vert
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture1.vert
+END
+texture2.frag
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture2.frag
+END
+texture2.vert
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture2.vert
+END
+main.frag
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/main.frag
+END
+postprocess.frag
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/postprocess.frag
+END
+postprocess.vert
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/postprocess.vert
+END
+alphaTest.frag
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/alphaTest.frag
+END
+main.vert
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/main.vert
+END
+fog.glsl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/fog.glsl
+END
+lightingPerFragment.frag
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/lightingPerFragment.frag
+END
+texture.frag
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4/trunk/Sources/OpenGLES/OpenGLES20/shaders/texture.frag
+END
