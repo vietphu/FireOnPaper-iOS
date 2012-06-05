@@ -1,0 +1,281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26CF5334157DF244004394B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5333157DF244004394B9 /* UIKit.framework */; };
+		26CF5336157DF244004394B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5335157DF244004394B9 /* Foundation.framework */; };
+		26CF5338157DF244004394B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26CF5337157DF244004394B9 /* CoreGraphics.framework */; };
+		26CF533E157DF244004394B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26CF533C157DF244004394B9 /* InfoPlist.strings */; };
+		26CF5340157DF244004394B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF533F157DF244004394B9 /* main.m */; };
+		26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */; };
+		26CF5347157DF244004394B9 /* FireOnPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26CF5346157DF244004394B9 /* FireOnPaperViewController.m */; };
+		26CF534A157DF244004394B9 /* FireOnPaperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26CF532F157DF244004394B9 /* FireOnPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireOnPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26CF5333157DF244004394B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		26CF5335157DF244004394B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		26CF5337157DF244004394B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		26CF533B157DF244004394B9 /* FireOnPaper-Info.plist */ = {isa = PBXFileReference; path = "FireOnPaper-Info.plist"; sourceTree = "<group>"; };
+		26CF533D157DF244004394B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		26CF533F157DF244004394B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		26CF5341157DF244004394B9 /* FireOnPaper-Prefix.pch */ = {isa = PBXFileReference; path = "FireOnPaper-Prefix.pch"; sourceTree = "<group>"; };
+		26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */ = {isa = PBXFileReference; path = FireOnPaperAppDelegate.h; sourceTree = "<group>"; };
+		26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FireOnPaperAppDelegate.m; sourceTree = "<group>"; };
+		26CF5345157DF244004394B9 /* FireOnPaperViewController.h */ = {isa = PBXFileReference; path = FireOnPaperViewController.h; sourceTree = "<group>"; };
+		26CF5346157DF244004394B9 /* FireOnPaperViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FireOnPaperViewController.m; sourceTree = "<group>"; };
+		26CF5349157DF244004394B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FireOnPaperViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26CF532C157DF244004394B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26CF5334157DF244004394B9 /* UIKit.framework in Frameworks */,
+				26CF5336157DF244004394B9 /* Foundation.framework in Frameworks */,
+				26CF5338157DF244004394B9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26CF5324157DF244004394B9 = {
+			isa = PBXGroup;
+			children = (
+				26CF5339157DF244004394B9 /* FireOnPaper */,
+				26CF5332157DF244004394B9 /* Frameworks */,
+				26CF5330157DF244004394B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		26CF5330157DF244004394B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26CF532F157DF244004394B9 /* FireOnPaper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26CF5332157DF244004394B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26CF5333157DF244004394B9 /* UIKit.framework */,
+				26CF5335157DF244004394B9 /* Foundation.framework */,
+				26CF5337157DF244004394B9 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		26CF5339157DF244004394B9 /* FireOnPaper */ = {
+			isa = PBXGroup;
+			children = (
+				26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */,
+				26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.m */,
+				26CF5345157DF244004394B9 /* FireOnPaperViewController.h */,
+				26CF5346157DF244004394B9 /* FireOnPaperViewController.m */,
+				26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */,
+				26CF533A157DF244004394B9 /* Supporting Files */,
+			);
+			path = FireOnPaper;
+			sourceTree = "<group>";
+		};
+		26CF533A157DF244004394B9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				26CF533B157DF244004394B9 /* FireOnPaper-Info.plist */,
+				26CF533C157DF244004394B9 /* InfoPlist.strings */,
+				26CF533F157DF244004394B9 /* main.m */,
+				26CF5341157DF244004394B9 /* FireOnPaper-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26CF532E157DF244004394B9 /* FireOnPaper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26CF534D157DF244004394B9 /* Build configuration list for PBXNativeTarget "FireOnPaper" */;
+			buildPhases = (
+				26CF532B157DF244004394B9 /* Sources */,
+				26CF532C157DF244004394B9 /* Frameworks */,
+				26CF532D157DF244004394B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FireOnPaper;
+			productName = FireOnPaper;
+			productReference = 26CF532F157DF244004394B9 /* FireOnPaper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26CF5326157DF244004394B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = FireOnPaper;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Peking University";
+			};
+			buildConfigurationList = 26CF5329157DF244004394B9 /* Build configuration list for PBXProject "FireOnPaper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 26CF5324157DF244004394B9;
+			productRefGroup = 26CF5330157DF244004394B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26CF532E157DF244004394B9 /* FireOnPaper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26CF532D157DF244004394B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26CF533E157DF244004394B9 /* InfoPlist.strings in Resources */,
+				26CF534A157DF244004394B9 /* FireOnPaperViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26CF532B157DF244004394B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26CF5340157DF244004394B9 /* main.m in Sources */,
+				26CF5344157DF244004394B9 /* FireOnPaperAppDelegate.m in Sources */,
+				26CF5347157DF244004394B9 /* FireOnPaperViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		26CF533C157DF244004394B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26CF533D157DF244004394B9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26CF5349157DF244004394B9 /* en */,
+			);
+			name = FireOnPaperViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26CF534B157DF244004394B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		26CF534C157DF244004394B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26CF534E157DF244004394B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FireOnPaper/FireOnPaper-Prefix.pch";
+				INFOPLIST_FILE = "FireOnPaper/FireOnPaper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		26CF534F157DF244004394B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FireOnPaper/FireOnPaper-Prefix.pch";
+				INFOPLIST_FILE = "FireOnPaper/FireOnPaper-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26CF5329157DF244004394B9 /* Build configuration list for PBXProject "FireOnPaper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CF534B157DF244004394B9 /* Debug */,
+				26CF534C157DF244004394B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26CF534D157DF244004394B9 /* Build configuration list for PBXNativeTarget "FireOnPaper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26CF534E157DF244004394B9 /* Debug */,
+				26CF534F157DF244004394B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26CF5326157DF244004394B9 /* Project object */;
+}
