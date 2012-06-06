@@ -263,13 +263,13 @@ float mousePointY2 = 0;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;	
 	
-	if (lowPassResults < 1.0)
+	if (lowPassResults < 0.6)
     {
 		
     }
     else
     {
-        m_engine->OnDisturbWithMicrophone(false, true, lowPassResults);
+        m_engine->OnDisturbWithMicrophone(false, true, lowPassResults * 1.0 / 0.6);
         NSLog(@"\n 树欲静而风不止:    %f \n",lowPassResults);
     }
 }

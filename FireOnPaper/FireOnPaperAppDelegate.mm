@@ -24,12 +24,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	[application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
 	self.viewController = [[[FireOnPaperViewController alloc] initWithNibName:@"FireOnPaperViewController" bundle:nil] autorelease];
 	self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-	[application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
 	return YES;
 }
 

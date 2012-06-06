@@ -14,8 +14,6 @@
 
 @implementation FireOnPaperViewController
 
-//@synthesize view = _view;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
