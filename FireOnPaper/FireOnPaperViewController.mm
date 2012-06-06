@@ -12,6 +12,11 @@
 
 @interface FireOnPaperViewController ()
 
+static UIImage *shrinkImage(UIImage *original, CGSize size);
+- (void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType;
+- (void)updateDisplay;
+- (UIImage*)editedImageFromMediaWithInfo:(NSDictionary*)info;
+
 @end
 
 @implementation FireOnPaperViewController
@@ -23,6 +28,10 @@
 @synthesize lastChosenMediaType;
 @synthesize imageFrame;
 @synthesize glViewController;
+@synthesize crop_org_x;
+@synthesize crop_org_y;
+@synthesize crop_size_w;
+@synthesize crop_size_h;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,6 +56,10 @@
 
 - (void)viewDidUnload
 {
+    [self setCrop_org_x:nil];
+    [self setCrop_org_y:nil];
+    [self setCrop_size_w:nil];
+    [self setCrop_size_h:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -68,7 +81,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (IBAction)paperButtonSelected:(id)sender
@@ -111,9 +124,10 @@
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.lastChosenMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
-        UIImage *chosenUneditedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //UIImage *chosenUneditedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
 		//UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        UIImage *shrunkenImage = shrinkImage(chosenUneditedImage, imageFrame.size);
+        UIImage *resizedImage = [self editedImageFromMediaWithInfo:info];
+        UIImage *shrunkenImage = shrinkImage(resizedImage, imageFrame.size);
         self.image = shrunkenImage;
     } else if ([lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
         self.movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
@@ -123,6 +137,56 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {    
     [picker dismissModalViewControllerAnimated:YES];
+}
+
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+
+- (UIImage*)editedImageFromMediaWithInfo:(NSDictionary*)info{
+    if(![info   objectForKey:UIImagePickerControllerCropRect])return nil;
+    if(![info   objectForKey:UIImagePickerControllerOriginalImage])return nil;
+    
+    UIImage *originalImage=[info objectForKey:UIImagePickerControllerOriginalImage];
+    CGRect rect=[[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
+    
+    // WZY resize to 2:3
+    rect.size.width = rect.size.height * 2.0 / 3.0;
+    rect.origin.x += rect.size.width / 6.0;
+    
+    self.crop_org_x.text = [NSString stringWithFormat:@"rect.org.x=%f", rect.origin.x];
+    self.crop_org_y.text = [NSString stringWithFormat:@"rect.org.y=%f", rect.origin.y];
+    self.crop_size_w.text = [NSString stringWithFormat:@"rect.size.w=%f", rect.size.width];
+    self.crop_size_h.text = [NSString stringWithFormat:@"rect.size.h=%f", rect.size.height];
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect([originalImage CGImage], rect);
+    
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+    CGContextRef bitmap = CGBitmapContextCreate(NULL, rect.size.width, rect.size.height, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+    
+    if (originalImage.imageOrientation == UIImageOrientationLeft) {
+        CGContextRotateCTM (bitmap, radians(90));
+        CGContextTranslateCTM (bitmap, 0, -rect.size.height);
+        
+    } else if (originalImage.imageOrientation == UIImageOrientationRight) {
+        CGContextRotateCTM (bitmap, radians(-90));
+        CGContextTranslateCTM (bitmap, -rect.size.width, 0);
+        
+    } else if (originalImage.imageOrientation == UIImageOrientationUp) {
+        // NOTHING
+    } else if (originalImage.imageOrientation == UIImageOrientationDown) {
+        CGContextTranslateCTM (bitmap, rect.size.width, rect.size.height);
+        CGContextRotateCTM (bitmap, radians(-180.));
+    }
+    
+    CGContextDrawImage(bitmap, CGRectMake(0, 0, rect.size.width, rect.size.height), imageRef);
+    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+    
+    UIImage *resultImage=[UIImage imageWithCGImage:ref];
+    CGImageRelease(imageRef);
+    CGContextRelease(bitmap);
+    CGImageRelease(ref);
+    
+    return resultImage;
 }
 
 #pragma mark  -
@@ -171,7 +235,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
         [[UIImagePickerController alloc] init];
         picker.mediaTypes = mediaTypes;
         picker.delegate = self;
-        //picker.allowsEditing = YES;
+        picker.allowsEditing = YES;
         picker.sourceType = sourceType;
         [self presentModalViewController:picker animated:YES];
     } else {
@@ -185,4 +249,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     }
 }
 
+- (void)dealloc {
+    [crop_org_x release];
+    [crop_org_y release];
+    [crop_size_w release];
+    [crop_size_h release];
+    [super dealloc];
+}
 @end
