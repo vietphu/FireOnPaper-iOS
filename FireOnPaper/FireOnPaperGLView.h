@@ -29,6 +29,7 @@ using namespace OpenGLES;
     GLuint m_framebuffer;
     GLuint m_renderbuffer;
 	GLuint m_depthRenderbuffer;
+	BOOL canBufferDestroyed;
 	GLuint textureImageID[IMAGENUM];
 	
 	FireOnPaperEngine * m_engine;

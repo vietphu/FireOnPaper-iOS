@@ -21,6 +21,7 @@ float mousePointX2 = 0;
 float mousePointY2 = 0;
 
 - (id)initWithFrame:(CGRect)frame
+		paperToFire:(UIImage *)paperToFire
 {
     if (self = [super initWithFrame:frame]) {
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*) super.layer;
@@ -55,7 +56,8 @@ float mousePointY2 = 0;
 		
 		gl->glGenTextures(IMAGENUM, textureImageID);
 		for (int i = 0; i<IMAGENUM; i++) {
-			brushImage = [UIImage imageNamed:[NSString stringWithFormat:@"texture%d.png",i]].CGImage;
+			if (i == 0) brushImage = paperToFire.CGImage;
+			else brushImage = [UIImage imageNamed:[NSString stringWithFormat:@"texture%d.png",i]].CGImage;
 			
 			width  = CGImageGetWidth(brushImage);
 			height = CGImageGetHeight(brushImage);
@@ -82,6 +84,7 @@ float mousePointY2 = 0;
 		m_height = CGRectGetHeight(frame);
 		m_engine = new FireOnPaperEngine();
 		m_engine->Initialize(m_width, m_height, gl, textureImageID);
+		canBufferDestroyed = NO;
 		
         [self drawView: nil];
         m_timestamp = CACurrentMediaTime();
@@ -159,10 +162,14 @@ float mousePointY2 = 0;
 
 - (void) dealloc
 {
+	delete gl;
+	delete m_engine;
+	
 	glDeleteTextures(IMAGENUM, textureImageID);
     if ([EAGLContext currentContext] == m_context) {
         [EAGLContext setCurrentContext:nil];
     }
+	
     [m_context release];
     [super dealloc];
 }
@@ -209,21 +216,26 @@ float mousePointY2 = 0;
 		return NO;
 	}
 	
+	canBufferDestroyed = YES;
+	
 	return YES;
 }
 
 // Clean up any buffers we have allocated.
 - (void)destroyFramebuffer
 {
-	gl->glDeleteFramebuffers(1, &m_framebuffer);
-	m_framebuffer = 0;
-	gl->glDeleteRenderbuffers(1, &m_renderbuffer);
-	m_renderbuffer = 0;
+	if (canBufferDestroyed) {
+		gl->glDeleteFramebuffers(1, &m_framebuffer);
+		m_framebuffer = 0;
+		gl->glDeleteRenderbuffers(1, &m_renderbuffer);
+		m_renderbuffer = 0;
 	
-	if(m_depthRenderbuffer)
-	{
-		gl->glDeleteRenderbuffers(1, &m_depthRenderbuffer);
-		m_depthRenderbuffer = 0;
+		if(m_depthRenderbuffer)
+		{
+			gl->glDeleteRenderbuffers(1, &m_depthRenderbuffer);
+			m_depthRenderbuffer = 0;
+		}
+		canBufferDestroyed = NO;
 	}
 }
 

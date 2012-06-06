@@ -7,13 +7,14 @@
 //
 
 #import "FireOnPaperAppDelegate.h"
-
 #import "FireOnPaperViewController.h"
+#import "FireOnPaperGLViewController.h"
 
 @implementation FireOnPaperAppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
+@synthesize glViewController = _glViewController;
 
 - (void)dealloc
 {
@@ -28,8 +29,10 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
 	self.viewController = [[[FireOnPaperViewController alloc] initWithNibName:@"FireOnPaperViewController" bundle:nil] autorelease];
-	self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+	//self.glViewController = [[[FireOnPaperGLViewController alloc] initWithNibName:@"FireOnPaperGLViewController" bundle:nil] autorelease];
+	[self.window addSubview:self.viewController.view];
+	//self.window.backgroundColor = [UIColor blackColor];
+	[self.window makeKeyAndVisible];
 	return YES;
 }
 
