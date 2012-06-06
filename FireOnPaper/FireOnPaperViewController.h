@@ -23,10 +23,6 @@
 @property (assign, nonatomic) CGRect imageFrame;
 
 @property (strong, nonatomic) FireOnPaperGLViewController *glViewController;
-@property (retain, nonatomic) IBOutlet UILabel *crop_org_x;
-@property (retain, nonatomic) IBOutlet UILabel *crop_org_y;
-@property (retain, nonatomic) IBOutlet UILabel *crop_size_w;
-@property (retain, nonatomic) IBOutlet UILabel *crop_size_h;
 
 - (IBAction)paperButtonSelected:(id)sender;
 - (IBAction)cameraButtonSelected:(id)sender;
