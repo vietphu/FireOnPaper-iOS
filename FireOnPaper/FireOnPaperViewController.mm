@@ -128,8 +128,12 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 			UIGraphicsEndImageContext();
 			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image];
 		}
+        else
+        {
+            [self.GLView reInit];
+        }
 		[self.view insertSubview:self.GLView atIndex:8];
-		[self.GLView release];
+		//[self.GLView release];
 	}
 	
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
@@ -158,8 +162,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	if (self.GLView.superview != nil) {
 		[self.GLView removeFromSuperview];
 		
-		[self.GLView release];
-		self.GLView = nil;
+		[self.GLView stopRendering];
+		//self.GLView = nil;
 	}
 	
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlDown

@@ -115,7 +115,7 @@ float mousePointY2 = 0;
 		}
         
         //LC Sound
-/*        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
 		
         NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
@@ -135,8 +135,57 @@ float mousePointY2 = 0;
             [recorder record];
             levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.04 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
         }
-		*/
+ 
     }
+    return self;
+}
+
+- (id)reInit
+{
+    if (m_engine != NULL)
+    {
+        delete m_engine;
+        m_engine = NULL;
+    }
+    
+    m_engine = new FireOnPaperEngine();
+    m_engine->Initialize(m_width, m_height, gl, textureImageID);
+    canBufferDestroyed = NO;
+/*		
+    //[self drawView: nil];
+    m_timestamp = CACurrentMediaTime();
+        
+    CADisplayLink* displayLink;
+    displayLink = [CADisplayLink displayLinkWithTarget:self
+                                                  selector:@selector(drawView:)];
+    [displayLink setFrameInterval:animationFrameInterval];
+    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
+                          forMode:NSDefaultRunLoopMode];
+        
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        
+    [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(didRotate:)
+         name:UIDeviceOrientationDidChangeNotification
+         object:nil];
+		
+    self.motionManager = [[CMMotionManager alloc] init];
+		
+    if (motionManager.accelerometerAvailable) {
+        motionManager.accelerometerUpdateInterval = 1.0 / 10.0;
+        [motionManager startAccelerometerUpdates];
+        self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(updateDisplay) userInfo:nil repeats:YES];
+    } else {
+        NSLog(@"This device has no accelerometer.");
+    }*/
+        
+    return self;
+}
+
+- (id) stopRendering
+{
+    m_engine->SetStopRendering();
     return self;
 }
 
@@ -277,7 +326,7 @@ float mousePointY2 = 0;
 
 //使用一个回调函数，来对声音做出反映
 - (void)levelTimerCallback:(NSTimer *)timer {
-/*	[recorder updateMeters];
+	[recorder updateMeters];
     
 	const double ALPHA = 0.20;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
@@ -291,7 +340,7 @@ float mousePointY2 = 0;
     {
         m_engine->OnDisturbWithMicrophone(false, true, lowPassResults * 1.0 / 0.6);
         NSLog(@"\n 树欲静而风不止:    %f \n",lowPassResults);
-    }*/
+    }
 }
 
 // Handles the start of a touch

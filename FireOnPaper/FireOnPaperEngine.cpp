@@ -38,10 +38,15 @@ void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESCont
 	gl->glEnable(GL_DEPTH_TEST);
 	gl->glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     gl->glEnableClientState(GL_VERTEX_ARRAY);
+    
+    mIsStopRendering = false;
 }
 
 void FireOnPaperEngine::Render()
 {	
+    if (mIsStopRendering)
+        return;
+    
 	gl->glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	gl->glMatrixMode(GL_PROJECTION);
 	gl->glLoadIdentity();
@@ -54,6 +59,9 @@ void FireOnPaperEngine::Render()
 
 void FireOnPaperEngine::UpdateAnimation(float timeStep)
 {
+    if (mIsStopRendering)
+        return;
+    
     paper->DoPaperCreateHeat();
     paper->DoSpaceToSpaceHeatSpread();
 	
@@ -83,6 +91,11 @@ void FireOnPaperEngine::OnTouchChangePaperMaterial(float _x_0_1, float _y_0_1)
     paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH-1), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT));
     //paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT+1));
     paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT-1));
+}
+
+void FireOnPaperEngine::SetStopRendering()
+{
+    mIsStopRendering = true;
 }
 
 FireOnPaperEngine::~FireOnPaperEngine()

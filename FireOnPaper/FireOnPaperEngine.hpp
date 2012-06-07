@@ -28,6 +28,8 @@ private:
     Env * env;
     Paper * paper;
 	CFireParticleSystem fire_system[FIRE_SYSTEM_NUM];
+    
+    bool mIsStopRendering;
 	
 public:
 	FireOnPaperEngine();
@@ -37,6 +39,7 @@ public:
 	void OnRotateWithAccelerometer(double x, double y, double z);
 	void OnDisturbWithMicrophone(bool has_direction, bool from_left, double disturbing_coefficient);
     void OnTouchChangePaperMaterial(float _x_0_1, float _y_0_1);
+    void SetStopRendering();
     ~FireOnPaperEngine();
 };
 
