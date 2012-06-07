@@ -47,7 +47,7 @@ using namespace OpenGLES;
 - (id) initWithFrame:(CGRect)frame
 		paperToFire:(UIImage *)paperToFire;
 
-- (id) reInit;
+- (id) reInitWithPaperToFire:(UIImage *)paperToFire;
 - (id) stopRendering;
 
 - (void) drawView: (CADisplayLink *) displayLink;

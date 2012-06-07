@@ -21,7 +21,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *cameraLabel;
 @property (retain, nonatomic) IBOutlet UIButton *photoButton;
 @property (retain, nonatomic) IBOutlet UILabel *photoLabel;
+@property (retain, nonatomic) IBOutlet UIButton *resetButton;
+@property (retain, nonatomic) IBOutlet UILabel *resetLabel;
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
+@property (retain, nonatomic) IBOutlet UIButton *homeButton;
+@property (retain, nonatomic) IBOutlet UIButton *menuButton;
 
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) UIImage *image;
@@ -31,9 +35,10 @@
 
 @property (retain, nonatomic) FireOnPaperGLView *GLView;
 
-- (IBAction)paperButtonSelected:(id)sender;
+- (IBAction)fireButtonSelected:(id)sender;
 - (IBAction)cameraButtonSelected:(id)sender;
 - (IBAction)photoButtonSelected:(id)sender;
-- (IBAction)stopButtonSelected:(id)sender;
+- (IBAction)resetButtonSelected:(id)sender;
+- (IBAction)backButtonSelected:(id)sender;
 
 @end

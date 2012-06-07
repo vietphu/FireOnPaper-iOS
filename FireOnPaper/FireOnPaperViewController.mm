@@ -18,7 +18,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 + (UIImage*)resizedImageWithInfo:(NSDictionary *)info
 				  withWidthRatio:(GLfloat)width
 				 withHeightRatio:(GLfloat)height;
-+ (UIImage*)editedImageFromMediaWithInfo:(NSDictionary*)info;
 
 @end
 
@@ -29,7 +28,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize cameraLabel;
 @synthesize photoButton;
 @synthesize photoLabel;
+@synthesize resetButton;
+@synthesize resetLabel;
 @synthesize backButton;
+@synthesize homeButton;
+@synthesize menuButton;
 @synthesize moviePlayerController;
 @synthesize image;
 @synthesize movieURL;
@@ -59,12 +62,19 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		cameraButton.hidden = YES;
 		cameraLabel.hidden = YES;
 	}
-	backButton.hidden = YES;
+/*	backButton.hidden = YES;
+	homeButton.hidden = YES;
+	menuButton.hidden = YES;*/
     imageFrame = imageView.frame;
 }
 
 - (void)viewDidUnload
 {
+	[self setResetButton:nil];
+	[self setResetLabel:nil];
+	[self setBackButton:nil];
+	[self setHomeButton:nil];
+	[self setMenuButton:nil];
 	[super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -72,7 +82,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[self setCameraButton:nil];
 	[self setCameraLabel:nil];
 	[self setPhotoButton:nil];
-	[self setBackButton:nil];
 	[self setDefaultLabel:nil];
 	[self setPhotoLabel:nil];
 	[self setOtherLabel:nil];
@@ -84,7 +93,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[cameraButton release];
 	[cameraLabel release];
 	[photoButton release];
-	[backButton release];
 	[defaultLabel release];
 	[photoLabel release];
 	[otherLabel release];
@@ -96,6 +104,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	
 	[GLView release];
 	
+	[resetButton release];
+	[resetLabel release];
+	[backButton release];
+	[homeButton release];
+	[menuButton release];
     [super dealloc];
 }
 
@@ -112,27 +125,25 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 #pragma mark  -
 #pragma mark Action for Buttons
-- (IBAction)paperButtonSelected:(id)sender
+- (IBAction)fireButtonSelected:(id)sender
 {
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	
 	if (self.GLView.superview == nil) {
+		CGSize itemSize = CGSizeMake(512, 512);
+		UIGraphicsBeginImageContext(itemSize);
+		CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
+		[imageView.image drawInRect:imageRect];
+		imageView.image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
 		if (self.GLView == nil) {
-			CGSize itemSize = CGSizeMake(512, 512);
-			UIGraphicsBeginImageContext(itemSize);
-			CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
-			[imageView.image drawInRect:imageRect];
-			imageView.image = UIGraphicsGetImageFromCurrentImageContext();
-			UIGraphicsEndImageContext();
 			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image];
-		}
-        else
-        {
-            [self.GLView reInit];
+		} else {
+            [self.GLView reInitWithPaperToFire:imageView.image];
         }
-		[self.view insertSubview:self.GLView atIndex:8];
+		[self.view insertSubview:self.GLView atIndex:10];
 		//[self.GLView release];
 	}
 	
@@ -141,6 +152,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[UIView commitAnimations];
 	
 	backButton.hidden = NO;
+	homeButton.hidden = NO;
+	menuButton.hidden = NO;
 }
 
 - (IBAction)cameraButtonSelected:(id)sender
@@ -153,24 +166,30 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
-- (IBAction)stopButtonSelected:(id)sender
+- (IBAction)backButtonSelected:(id)sender
 {
-	[UIView beginAnimations:@"View Flip" context:nil];
-	[UIView setAnimationDuration:1.25];
-	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-	
 	if (self.GLView.superview != nil) {
+		[UIView beginAnimations:@"View Flip" context:nil];
+		[UIView setAnimationDuration:1.25];
+		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+		
 		[self.GLView removeFromSuperview];
 		
 		[self.GLView stopRendering];
 		//self.GLView = nil;
+		
+		[UIView setAnimationTransition: UIViewAnimationTransitionCurlDown
+							   forView:self.view cache:YES];
+		[UIView commitAnimations];
+		
+/*		backButton.hidden = YES;
+		homeButton.hidden = YES;
+		menuButton.hidden = YES;*/
 	}
-	
-	[UIView setAnimationTransition: UIViewAnimationTransitionCurlDown
-						   forView:self.view cache:YES];
-	[UIView commitAnimations];
-	
-	backButton.hidden = YES;
+}
+
+- (IBAction)resetButtonSelected:(id)sender {
+	imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"texture0.png"]];
 }
 
 #pragma mark  -
@@ -179,8 +198,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
     self.lastChosenMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
-        //UIImage *chosenUneditedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-		//UIImage *chosenImage = [info objectForKey:UIImagePickerControllerEditedImage];
         UIImage *resizedImage = [[self class] resizedImageWithInfo:info withWidthRatio:2.0 withHeightRatio:3.0];
         UIImage *shrunkenImage = shrinkImage(resizedImage, imageFrame.size);
         self.image = shrunkenImage;
@@ -223,47 +240,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     CGImageRelease(ref);
 	
 	return resultImage;
-}
-
-static inline double radians (double degrees) {return degrees * M_PI/180;}
-
-+ (UIImage*)editedImageFromMediaWithInfo:(NSDictionary*)info{
-    if(![info   objectForKey:UIImagePickerControllerCropRect])return nil;
-    if(![info   objectForKey:UIImagePickerControllerOriginalImage])return nil;
-    
-    UIImage *originalImage=[info objectForKey:UIImagePickerControllerOriginalImage];
-    CGRect rect=[[info objectForKey:UIImagePickerControllerCropRect] CGRectValue];
-    
-    CGImageRef imageRef = CGImageCreateWithImageInRect([originalImage CGImage], rect);
-    
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
-    CGContextRef bitmap = CGBitmapContextCreate(NULL, rect.size.width, rect.size.height, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-    
-    if (originalImage.imageOrientation == UIImageOrientationLeft) {
-        CGContextRotateCTM (bitmap, radians(90));
-        CGContextTranslateCTM (bitmap, 0, -rect.size.height);
-        
-    } else if (originalImage.imageOrientation == UIImageOrientationRight) {
-        CGContextRotateCTM (bitmap, radians(-90));
-        CGContextTranslateCTM (bitmap, -rect.size.width, 0);
-        
-    } else if (originalImage.imageOrientation == UIImageOrientationUp) {
-        // NOTHING
-    } else if (originalImage.imageOrientation == UIImageOrientationDown) {
-        CGContextTranslateCTM (bitmap, rect.size.width, rect.size.height);
-        CGContextRotateCTM (bitmap, radians(-180.));
-    }
-	
-    CGContextDrawImage(bitmap, CGRectMake(0, 0, rect.size.width, rect.size.height), imageRef);
-    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-    
-    UIImage *resultImage=[UIImage imageWithCGImage:ref];
-    CGImageRelease(imageRef);
-    CGContextRelease(bitmap);
-    CGImageRelease(ref);
-	
-    return resultImage;
 }
 
 #pragma mark  -

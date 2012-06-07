@@ -48,43 +48,10 @@ float mousePointY2 = 0;
 			gl = new OpenGLES2::OpenGLES20Context();
         }
 		
-		// Generate and Bind Textures
-		CGImageRef brushImage;
-		CGContextRef brushContext;
-		GLubyte	*brushData;
-		size_t width, height;
-		
-		gl->glGenTextures(IMAGENUM, textureImageID);
-		for (int i = 0; i<IMAGENUM; i++) {
-			if (i == 0) brushImage = paperToFire.CGImage;
-			else brushImage = [UIImage imageNamed:[NSString stringWithFormat:@"texture%d.png",i]].CGImage;
-			
-			width  = CGImageGetWidth(brushImage);
-			height = CGImageGetHeight(brushImage);
-			
-			if (brushImage) {
-				brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
-				brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
-				CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
-				CGContextRelease(brushContext);
-				
-				gl->glBindTexture(GL_TEXTURE_2D, textureImageID[i]);
-				
-				gl->glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-				gl->glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				
-				gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
-				free(brushData);
-			}
-			else
-				NSLog(@"initWithFrame brushImage error!");
-		}
-        
 		m_width = CGRectGetWidth(frame);
 		m_height = CGRectGetHeight(frame);
-		m_engine = new FireOnPaperEngine();
-		m_engine->Initialize(m_width, m_height, gl, textureImageID);
-		canBufferDestroyed = NO;
+		
+		[self reInitWithPaperToFire:paperToFire];
 		
         //[self drawView: nil];
         m_timestamp = CACurrentMediaTime();
@@ -140,52 +107,57 @@ float mousePointY2 = 0;
     return self;
 }
 
-- (id)reInit
+- (id)reInitWithPaperToFire:(UIImage *)paperToFire
 {
     if (m_engine != NULL)
     {
         delete m_engine;
         m_engine = NULL;
     }
-    
+	
+    // Generate and Bind Textures
+	CGImageRef brushImage;
+	CGContextRef brushContext;
+	GLubyte	*brushData;
+	size_t width, height;
+	
+	gl->glGenTextures(IMAGENUM, textureImageID);
+	for (int i = 0; i<IMAGENUM; i++) {
+		if (i == 0) brushImage = paperToFire.CGImage;
+		else brushImage = [UIImage imageNamed:[NSString stringWithFormat:@"texture%d.png",i]].CGImage;
+		
+		width  = CGImageGetWidth(brushImage);
+		height = CGImageGetHeight(brushImage);
+		
+		if (brushImage) {
+			brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
+			brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
+			CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
+			CGContextRelease(brushContext);
+			
+			gl->glBindTexture(GL_TEXTURE_2D, textureImageID[i]);
+			
+			gl->glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			gl->glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			
+			gl->glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, brushData);
+			free(brushData);
+		}
+		else
+			NSLog(@"initWithFrame brushImage error!");
+	}
+	
     m_engine = new FireOnPaperEngine();
     m_engine->Initialize(m_width, m_height, gl, textureImageID);
     canBufferDestroyed = NO;
-/*		
-    //[self drawView: nil];
-    m_timestamp = CACurrentMediaTime();
-        
-    CADisplayLink* displayLink;
-    displayLink = [CADisplayLink displayLinkWithTarget:self
-                                                  selector:@selector(drawView:)];
-    [displayLink setFrameInterval:animationFrameInterval];
-    [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
-                          forMode:NSDefaultRunLoopMode];
-        
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        
-    [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(didRotate:)
-         name:UIDeviceOrientationDidChangeNotification
-         object:nil];
-		
-    self.motionManager = [[CMMotionManager alloc] init];
-		
-    if (motionManager.accelerometerAvailable) {
-        motionManager.accelerometerUpdateInterval = 1.0 / 10.0;
-        [motionManager startAccelerometerUpdates];
-        self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/10.0 target:self selector:@selector(updateDisplay) userInfo:nil repeats:YES];
-    } else {
-        NSLog(@"This device has no accelerometer.");
-    }*/
-        
+	
     return self;
 }
 
 - (id) stopRendering
 {
     m_engine->SetStopRendering();
+	gl->glDeleteTextures(IMAGENUM, textureImageID);
     return self;
 }
 
@@ -196,8 +168,6 @@ float mousePointY2 = 0;
 
 - (void) drawView: (CADisplayLink *) displayLink
 {
-	UIView* tmpview = self.superview;
-	NSArray* arr = tmpview.subviews;
 	[EAGLContext setCurrentContext:m_context];
 	gl->glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
 	
@@ -221,9 +191,6 @@ float mousePointY2 = 0;
         [EAGLContext setCurrentContext:nil];
     }
 	[m_context release];
-	
-	//[recorder release];
-	//[levelTimer release];
 	
 	delete m_engine;
 	delete gl;

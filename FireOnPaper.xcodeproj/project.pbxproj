@@ -21,6 +21,9 @@
 		2618B8D9157DF61800BF5E77 /* PaperUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8CE157DF61800BF5E77 /* PaperUnit.cpp */; };
 		2618B8DB157DF61800BF5E77 /* SpaceUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2618B8D3157DF61800BF5E77 /* SpaceUnit.cpp */; };
 		2618B8DD157DF79A00BF5E77 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2618B8DC157DF79A00BF5E77 /* OpenGLES.framework */; };
+		2694C2AF1580B8090048DC31 /* backButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2AC1580B8090048DC31 /* backButton.png */; };
+		2694C2B01580B8090048DC31 /* homeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2AD1580B8090048DC31 /* homeButton.png */; };
+		2694C2B11580B8090048DC31 /* menuButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2AE1580B8090048DC31 /* menuButton.png */; };
 		26B6BEBD157DF8DD00289FE4 /* FireOnPaperEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */; };
 		26B6BF00157E048E00289FE4 /* OpenGLES11Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC4157E048E00289FE4 /* OpenGLES11Context.cpp */; };
 		26B6BF01157E048E00289FE4 /* OpenGLES11Implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC6157E048E00289FE4 /* OpenGLES11Implementation.cpp */; };
@@ -247,6 +250,9 @@
 		2618B8D4157DF61800BF5E77 /* SpaceUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SpaceUnit.hpp; sourceTree = "<group>"; };
 		2618B8D5157DF61800BF5E77 /* Vector.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		2618B8DC157DF79A00BF5E77 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		2694C2AC1580B8090048DC31 /* backButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButton.png; sourceTree = "<group>"; };
+		2694C2AD1580B8090048DC31 /* homeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeButton.png; sourceTree = "<group>"; };
+		2694C2AE1580B8090048DC31 /* menuButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuButton.png; sourceTree = "<group>"; };
 		26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FireOnPaperEngine.cpp; sourceTree = "<group>"; };
 		26B6BEC0157DF99000289FE4 /* FireOnPaperEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEngine.hpp; sourceTree = "<group>"; };
 		26B6BEC1157DFA4E00289FE4 /* FireOnPaperEnv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEnv.hpp; sourceTree = "<group>"; };
@@ -478,6 +484,9 @@
 		2618B845157DF54300BF5E77 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2694C2AC1580B8090048DC31 /* backButton.png */,
+				2694C2AD1580B8090048DC31 /* homeButton.png */,
+				2694C2AE1580B8090048DC31 /* menuButton.png */,
 				2618B848157DF54300BF5E77 /* icon.png */,
 				2618B849157DF54300BF5E77 /* icon@2x.png */,
 				2618B84A157DF54300BF5E77 /* texture0.png */,
@@ -1015,6 +1024,9 @@
 				26B6C0601580607600289FE4 /* 97.gif in Resources */,
 				26B6C0611580607600289FE4 /* 98.gif in Resources */,
 				26B6C0621580607600289FE4 /* 99.gif in Resources */,
+				2694C2AF1580B8090048DC31 /* backButton.png in Resources */,
+				2694C2B01580B8090048DC31 /* homeButton.png in Resources */,
+				2694C2B11580B8090048DC31 /* menuButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
