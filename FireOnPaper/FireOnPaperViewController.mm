@@ -188,6 +188,13 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	}
 }
 
+- (IBAction)homeButtonSelected:(id)sender {
+}
+
+- (IBAction)menuButtonSelected:(id)sender {
+	
+}
+
 - (IBAction)resetButtonSelected:(id)sender {
 	imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"texture0.png"]];
 }

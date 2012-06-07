@@ -40,5 +40,7 @@
 - (IBAction)photoButtonSelected:(id)sender;
 - (IBAction)resetButtonSelected:(id)sender;
 - (IBAction)backButtonSelected:(id)sender;
+- (IBAction)homeButtonSelected:(id)sender;
+- (IBAction)menuButtonSelected:(id)sender;
 
 @end

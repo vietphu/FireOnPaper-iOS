@@ -557,12 +557,21 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">backButtonSelected:</string>
+						<string key="label">homeButtonSelected:</string>
 						<reference key="source" ref="329905924"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">93</int>
+					<int key="connectionID">101</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">menuButtonSelected:</string>
+						<reference key="source" ref="66920574"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">102</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -708,7 +717,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">100</int>
+			<int key="maxID">102</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -719,6 +728,8 @@
 						<string key="backButtonSelected:">id</string>
 						<string key="cameraButtonSelected:">id</string>
 						<string key="fireButtonSelected:">id</string>
+						<string key="homeButtonSelected:">id</string>
+						<string key="menuButtonSelected:">id</string>
 						<string key="photoButtonSelected:">id</string>
 						<string key="resetButtonSelected:">id</string>
 					</dictionary>
@@ -733,6 +744,14 @@
 						</object>
 						<object class="IBActionInfo" key="fireButtonSelected:">
 							<string key="name">fireButtonSelected:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="homeButtonSelected:">
+							<string key="name">homeButtonSelected:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="menuButtonSelected:">
+							<string key="name">menuButtonSelected:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="photoButtonSelected:">
