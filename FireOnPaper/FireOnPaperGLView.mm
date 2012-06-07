@@ -22,6 +22,7 @@ float mousePointY2 = 0;
 
 - (id)initWithFrame:(CGRect)frame
 		paperToFire:(UIImage *)paperToFire
+	   withRecorder:(AVAudioRecorder*)superRecorder
 {
     if (self = [super initWithFrame:frame]) {
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*) super.layer;
@@ -81,27 +82,8 @@ float mousePointY2 = 0;
 			NSLog(@"This device has no accelerometer.");
 		}
         
-        //LC Sound
-        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-		
-        NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-                                  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-                                  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-                                  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-                                  nil];
-		
-        NSError *error;
-		
-        recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-		
-        if (recorder) {
-			// TODO bug to fix
-            [recorder prepareToRecord];
-            recorder.meteringEnabled = YES;
-            [recorder record];
-            levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.04 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
-        }
+        recorder = superRecorder;
+		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.04 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
  
     }
     return self;

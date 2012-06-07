@@ -22,14 +22,12 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @end
 
 @implementation FireOnPaperViewController
+@synthesize imagePickerUsed;
 @synthesize GLView;
 @synthesize imageView;
 @synthesize cameraButton;
-@synthesize cameraLabel;
 @synthesize photoButton;
-@synthesize photoLabel;
 @synthesize resetButton;
-@synthesize resetLabel;
 @synthesize backButton;
 @synthesize homeButton;
 @synthesize menuButton;
@@ -39,8 +37,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize movieURL;
 @synthesize lastChosenMediaType;
 @synthesize imageFrame;
-@synthesize defaultLabel;
-@synthesize otherLabel;
 
 #pragma mark  -
 #pragma mark Override Methods
@@ -49,6 +45,23 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+		
+		//LC Sound
+        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+        NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+                                  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+                                  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+                                  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+                                  nil];
+        NSError *error;
+		recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+        if (recorder) {
+			// TODO bug to fix
+            [recorder prepareToRecord];
+            recorder.meteringEnabled = YES;
+            [recorder record];
+        }
     }
     return self;
 }
@@ -61,15 +74,14 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
           UIImagePickerControllerSourceTypeCamera]) {
 		cameraButton.enabled = NO;
 		cameraButton.hidden = YES;
-		cameraLabel.hidden = YES;
 	}
     imageFrame = imageView.frame;
+	self.imagePickerUsed = NO;
 }
 
 - (void)viewDidUnload
 {
 	[self setResetButton:nil];
-	[self setResetLabel:nil];
 	[self setBackButton:nil];
 	[self setHomeButton:nil];
 	[self setMenuButton:nil];
@@ -79,22 +91,14 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
     // e.g. self.myOutlet = nil;
 	[self setImageView:nil];
 	[self setCameraButton:nil];
-	[self setCameraLabel:nil];
 	[self setPhotoButton:nil];
-	[self setDefaultLabel:nil];
-	[self setPhotoLabel:nil];
-	[self setOtherLabel:nil];
 	[self setGLView:nil];
 }
 
 - (void)dealloc {
 	[imageView release];
 	[cameraButton release];
-	[cameraLabel release];
 	[photoButton release];
-	[defaultLabel release];
-	[photoLabel release];
-	[otherLabel release];
 	
 	[moviePlayerController release];
 	[image release];
@@ -104,7 +108,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[GLView release];
 	
 	[resetButton release];
-	[resetLabel release];
 	[backButton release];
 	[homeButton release];
 	[menuButton release];
@@ -140,11 +143,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		if (self.GLView == nil) {
-			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image];
+			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder];
 		} else {
             [self.GLView reInitWithPaperToFire:imageView.image];
         }
-		[self.view insertSubview:self.GLView atIndex:10];
+		[self.view insertSubview:self.GLView atIndex:5];
 	}
 	
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
@@ -189,7 +192,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 }
 
 - (IBAction)menuButtonSelected:(id)sender {
-	
+	[self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
 - (IBAction)resetButtonSelected:(id)sender {
@@ -208,10 +211,12 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     } else if ([lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
         self.movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
     }
+	self.imagePickerUsed = YES;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {    
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+	self.imagePickerUsed = NO;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
@@ -267,6 +272,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
 }
 
 - (void)updateDisplay {
+	if (!self.imagePickerUsed) return ;
+	self.imagePickerUsed = NO;
     if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
         imageView.image = image;
         imageView.hidden = NO;

@@ -26,6 +26,7 @@
 		2694C2C11580C6D90048DC31 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2BD1580C6D90048DC31 /* icon@2x.png */; };
 		2694C2C81580C8870048DC31 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2C61580C8870048DC31 /* Default.png */; };
 		2694C2C91580C8870048DC31 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2C71580C8870048DC31 /* Default@2x.png */; };
+		2694C2CF1580D1E10048DC31 /* normalButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 2694C2CE1580D1E10048DC31 /* normalButton.png */; };
 		26B6BEBD157DF8DD00289FE4 /* FireOnPaperEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */; };
 		26B6BF00157E048E00289FE4 /* OpenGLES11Context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC4157E048E00289FE4 /* OpenGLES11Context.cpp */; };
 		26B6BF01157E048E00289FE4 /* OpenGLES11Implementation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26B6BEC6157E048E00289FE4 /* OpenGLES11Implementation.cpp */; };
@@ -257,6 +258,7 @@
 		2694C2BD1580C6D90048DC31 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		2694C2C61580C8870048DC31 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2694C2C71580C8870048DC31 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		2694C2CE1580D1E10048DC31 /* normalButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normalButton.png; sourceTree = "<group>"; };
 		26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FireOnPaperEngine.cpp; sourceTree = "<group>"; };
 		26B6BEC0157DF99000289FE4 /* FireOnPaperEngine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEngine.hpp; sourceTree = "<group>"; };
 		26B6BEC1157DFA4E00289FE4 /* FireOnPaperEnv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FireOnPaperEnv.hpp; sourceTree = "<group>"; };
@@ -488,6 +490,7 @@
 		2618B845157DF54300BF5E77 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				2694C2CE1580D1E10048DC31 /* normalButton.png */,
 				2694C2C61580C8870048DC31 /* Default.png */,
 				2694C2C71580C8870048DC31 /* Default@2x.png */,
 				2694C2BC1580C6D90048DC31 /* icon.png */,
@@ -798,9 +801,9 @@
 			children = (
 				26CF5342157DF244004394B9 /* FireOnPaperAppDelegate.h */,
 				26CF5343157DF244004394B9 /* FireOnPaperAppDelegate.mm */,
+				26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */,
 				26CF5345157DF244004394B9 /* FireOnPaperViewController.h */,
 				26CF5346157DF244004394B9 /* FireOnPaperViewController.mm */,
-				26CF5348157DF244004394B9 /* FireOnPaperViewController.xib */,
 				26CF5350157DF2B8004394B9 /* FireOnPaperGLView.h */,
 				26CF5351157DF2B8004394B9 /* FireOnPaperGLView.mm */,
 				26B6BEBC157DF8DD00289FE4 /* FireOnPaperEngine.cpp */,
@@ -1035,6 +1038,7 @@
 				2694C2C11580C6D90048DC31 /* icon@2x.png in Resources */,
 				2694C2C81580C8870048DC31 /* Default.png in Resources */,
 				2694C2C91580C8870048DC31 /* Default@2x.png in Resources */,
+				2694C2CF1580D1E10048DC31 /* normalButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

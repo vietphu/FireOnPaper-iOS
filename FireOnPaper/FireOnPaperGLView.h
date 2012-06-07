@@ -45,7 +45,8 @@ using namespace OpenGLES;
 @property (retain) NSTimer * updateTimer;
 
 - (id) initWithFrame:(CGRect)frame
-		paperToFire:(UIImage *)paperToFire;
+		 paperToFire:(UIImage *)paperToFire
+		withRecorder:(AVAudioRecorder*)superRecorder;
 
 - (id) reInitWithPaperToFire:(UIImage *)paperToFire;
 - (id) stopRendering;
