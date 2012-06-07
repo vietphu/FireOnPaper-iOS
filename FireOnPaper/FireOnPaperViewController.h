@@ -26,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *backButton;
 @property (retain, nonatomic) IBOutlet UIButton *homeButton;
 @property (retain, nonatomic) IBOutlet UIButton *menuButton;
+@property (retain, nonatomic) IBOutlet UIButton *fireButton;
 
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayerController;
 @property (strong, nonatomic) UIImage *image;

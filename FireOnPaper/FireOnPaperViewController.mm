@@ -33,6 +33,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize backButton;
 @synthesize homeButton;
 @synthesize menuButton;
+@synthesize fireButton;
 @synthesize moviePlayerController;
 @synthesize image;
 @synthesize movieURL;
@@ -62,9 +63,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		cameraButton.hidden = YES;
 		cameraLabel.hidden = YES;
 	}
-/*	backButton.hidden = YES;
-	homeButton.hidden = YES;
-	menuButton.hidden = YES;*/
     imageFrame = imageView.frame;
 }
 
@@ -75,6 +73,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[self setBackButton:nil];
 	[self setHomeButton:nil];
 	[self setMenuButton:nil];
+	[self setFireButton:nil];
 	[super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -109,6 +108,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[backButton release];
 	[homeButton release];
 	[menuButton release];
+	[fireButton release];
     [super dealloc];
 }
 
@@ -125,7 +125,8 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 #pragma mark  -
 #pragma mark Action for Buttons
-- (IBAction)fireButtonSelected:(id)sender
+
+- (void)SetupFire
 {
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
@@ -144,16 +145,16 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
             [self.GLView reInitWithPaperToFire:imageView.image];
         }
 		[self.view insertSubview:self.GLView atIndex:10];
-		//[self.GLView release];
 	}
 	
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
 						   forView:self.view cache:NO];
 	[UIView commitAnimations];
-	
-	backButton.hidden = NO;
-	homeButton.hidden = NO;
-	menuButton.hidden = NO;
+}
+
+- (IBAction)fireButtonSelected:(id)sender
+{
+	[self SetupFire];
 }
 
 - (IBAction)cameraButtonSelected:(id)sender
@@ -176,19 +177,15 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		[self.GLView removeFromSuperview];
 		
 		[self.GLView stopRendering];
-		//self.GLView = nil;
 		
 		[UIView setAnimationTransition: UIViewAnimationTransitionCurlDown
 							   forView:self.view cache:YES];
 		[UIView commitAnimations];
-		
-/*		backButton.hidden = YES;
-		homeButton.hidden = YES;
-		menuButton.hidden = YES;*/
 	}
 }
 
 - (IBAction)homeButtonSelected:(id)sender {
+	[self backButtonSelected:sender];
 }
 
 - (IBAction)menuButtonSelected:(id)sender {
