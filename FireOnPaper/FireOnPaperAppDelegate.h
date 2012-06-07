@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class FireOnPaperViewController;
-@class FireOnPaperGLViewController;
 
 @interface FireOnPaperAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) FireOnPaperViewController *viewController;
-@property (strong, nonatomic) FireOnPaperGLViewController * glViewController;
 
 @end

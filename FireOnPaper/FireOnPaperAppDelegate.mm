@@ -8,13 +8,11 @@
 
 #import "FireOnPaperAppDelegate.h"
 #import "FireOnPaperViewController.h"
-#import "FireOnPaperGLViewController.h"
 
 @implementation FireOnPaperAppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
-@synthesize glViewController = _glViewController;
 
 - (void)dealloc
 {
@@ -26,12 +24,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	[application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-	self.viewController = [[[FireOnPaperViewController alloc] initWithNibName:@"FireOnPaperViewController" bundle:nil] autorelease];
-	//self.glViewController = [[[FireOnPaperGLViewController alloc] initWithNibName:@"FireOnPaperGLViewController" bundle:nil] autorelease];
-	[self.window addSubview:self.viewController.view];
-	//self.window.backgroundColor = [UIColor blackColor];
+	self.viewController = [[FireOnPaperViewController alloc] initWithNibName:@"FireOnPaperViewController" bundle:nil];
+	self.window.rootViewController = self.viewController;
 	[self.window makeKeyAndVisible];
 	return YES;
 }

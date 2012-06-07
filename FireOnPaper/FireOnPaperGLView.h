@@ -36,13 +36,16 @@ using namespace OpenGLES;
 	
 	NSInteger animationFrameInterval;
     float m_timestamp;
-    AVAudioRecorder *recorder;
+/*    AVAudioRecorder *recorder;
 	NSTimer *levelTimer;
-	double lowPassResults;
+	double lowPassResults;*/
 }
 
 @property (retain) CMMotionManager * motionManager;
 @property (retain) NSTimer * updateTimer;
+
+- (id)initWithFrame:(CGRect)frame
+		paperToFire:(UIImage *)paperToFire;
 
 - (void) drawView: (CADisplayLink *) displayLink;
 - (void) didRotate: (NSNotification *) notification;

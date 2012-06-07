@@ -86,7 +86,7 @@ float mousePointY2 = 0;
 		m_engine->Initialize(m_width, m_height, gl, textureImageID);
 		canBufferDestroyed = NO;
 		
-        [self drawView: nil];
+        //[self drawView: nil];
         m_timestamp = CACurrentMediaTime();
         
         CADisplayLink* displayLink;
@@ -115,7 +115,7 @@ float mousePointY2 = 0;
 		}
         
         //LC Sound
-        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+/*        NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
 		
         NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
@@ -129,12 +129,13 @@ float mousePointY2 = 0;
         recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
 		
         if (recorder) {
+			// TODO bug to fix
             [recorder prepareToRecord];
             recorder.meteringEnabled = YES;
             [recorder record];
             levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.04 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
         }
-		
+		*/
     }
     return self;
 }
@@ -146,6 +147,8 @@ float mousePointY2 = 0;
 
 - (void) drawView: (CADisplayLink *) displayLink
 {
+	UIView* tmpview = self.superview;
+	NSArray* arr = tmpview.subviews;
 	[EAGLContext setCurrentContext:m_context];
 	gl->glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
 	
@@ -162,15 +165,20 @@ float mousePointY2 = 0;
 
 - (void) dealloc
 {
-	delete gl;
-	delete m_engine;
+	[self destroyFramebuffer];
+	gl->glDeleteTextures(IMAGENUM, textureImageID);
 	
-	glDeleteTextures(IMAGENUM, textureImageID);
     if ([EAGLContext currentContext] == m_context) {
         [EAGLContext setCurrentContext:nil];
     }
+	[m_context release];
 	
-    [m_context release];
+	//[recorder release];
+	//[levelTimer release];
+	
+	delete m_engine;
+	delete gl;
+
     [super dealloc];
 }
 
@@ -269,7 +277,7 @@ float mousePointY2 = 0;
 
 //使用一个回调函数，来对声音做出反映
 - (void)levelTimerCallback:(NSTimer *)timer {
-	[recorder updateMeters];
+/*	[recorder updateMeters];
     
 	const double ALPHA = 0.20;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
@@ -283,7 +291,7 @@ float mousePointY2 = 0;
     {
         m_engine->OnDisturbWithMicrophone(false, true, lowPassResults * 1.0 / 0.6);
         NSLog(@"\n 树欲静而风不止:    %f \n",lowPassResults);
-    }
+    }*/
 }
 
 // Handles the start of a touch
