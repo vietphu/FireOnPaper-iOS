@@ -57,6 +57,8 @@ public:
     
     void TouchChangePaperMaterial(int spaceLogicX, int spaceLogicY);
     
+    void TouchPaperToBurn(int spaceLogicX, int spaceLogicY);
+    
     ~Paper();
     
     

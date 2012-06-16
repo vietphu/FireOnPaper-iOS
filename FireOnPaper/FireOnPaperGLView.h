@@ -25,6 +25,7 @@ using namespace OpenGLES;
 	EAGLContext * m_context;
 	GLint m_width;
 	GLint m_height;
+	BOOL isDefenceMode;
 	
     GLuint m_framebuffer;
     GLuint m_renderbuffer;
@@ -46,9 +47,11 @@ using namespace OpenGLES;
 
 - (id) initWithFrame:(CGRect)frame
 		 paperToFire:(UIImage *)paperToFire
-		withRecorder:(AVAudioRecorder*)superRecorder;
+		withRecorder:(AVAudioRecorder*)superRecorder
+	   FireOrDefence:(BOOL)isDefence;
 
-- (id) reInitWithPaperToFire:(UIImage *)paperToFire;
+- (id) reInitWithPaperToFire:(UIImage *)paperToFire
+			   FireOrDefence:(BOOL)isDefence;
 - (id) stopRendering;
 
 - (void) drawView: (CADisplayLink *) displayLink;

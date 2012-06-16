@@ -33,12 +33,13 @@ private:
 	
 public:
 	FireOnPaperEngine();
-    void Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID);
+    void Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, bool isDefenceMode);
     void Render();
     void UpdateAnimation(float timeStep);
 	void OnRotateWithAccelerometer(double x, double y, double z);
 	void OnDisturbWithMicrophone(bool has_direction, bool from_left, double disturbing_coefficient);
     void OnTouchChangePaperMaterial(float _x_0_1, float _y_0_1);
+    void OnTouchPaperToBurn(float _x_0_1, float _y_0_1);
     void SetStopRendering();
     ~FireOnPaperEngine();
 };

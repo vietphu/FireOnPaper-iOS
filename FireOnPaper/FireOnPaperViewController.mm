@@ -32,6 +32,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize homeButton;
 @synthesize menuButton;
 @synthesize fireButton;
+@synthesize defenceButton;
 @synthesize moviePlayerController;
 @synthesize image;
 @synthesize movieURL;
@@ -86,6 +87,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[self setHomeButton:nil];
 	[self setMenuButton:nil];
 	[self setFireButton:nil];
+	[self setDefenceButton:nil];
 	[super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -112,6 +114,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[homeButton release];
 	[menuButton release];
 	[fireButton release];
+	[defenceButton release];
     [super dealloc];
 }
 
@@ -129,8 +132,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 #pragma mark  -
 #pragma mark Action for Buttons
 
-- (void)SetupFire
+- (void)SetupFire:(NSString *)Mode
 {
+	BOOL isDefence = [Mode isEqualToString:[NSString stringWithFormat:@"Defence"]];
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -143,11 +147,11 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		if (self.GLView == nil) {
-			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder];
+			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder FireOrDefence:isDefence];
 		} else {
-            [self.GLView reInitWithPaperToFire:imageView.image];
+            [self.GLView reInitWithPaperToFire:imageView.image FireOrDefence:isDefence];
         }
-		[self.view insertSubview:self.GLView atIndex:5];
+		[self.view insertSubview:self.GLView atIndex:6];
 	}
 	
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
@@ -155,9 +159,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[UIView commitAnimations];
 }
 
-- (IBAction)fireButtonSelected:(id)sender
+- (IBAction)fireButtonSelected:(UIButton *)sender
 {
-	[self SetupFire];
+	[self SetupFire:sender.titleLabel.text];
 }
 
 - (IBAction)cameraButtonSelected:(id)sender

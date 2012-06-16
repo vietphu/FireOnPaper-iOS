@@ -23,6 +23,7 @@ float mousePointY2 = 0;
 - (id)initWithFrame:(CGRect)frame
 		paperToFire:(UIImage *)paperToFire
 	   withRecorder:(AVAudioRecorder*)superRecorder
+	  FireOrDefence:(BOOL)isDefence
 {
     if (self = [super initWithFrame:frame]) {
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*) super.layer;
@@ -52,7 +53,7 @@ float mousePointY2 = 0;
 		m_width = CGRectGetWidth(frame);
 		m_height = CGRectGetHeight(frame);
 		
-		[self reInitWithPaperToFire:paperToFire];
+		[self reInitWithPaperToFire:paperToFire FireOrDefence:isDefence];
 		
         //[self drawView: nil];
         m_timestamp = CACurrentMediaTime();
@@ -90,12 +91,14 @@ float mousePointY2 = 0;
 }
 
 - (id)reInitWithPaperToFire:(UIImage *)paperToFire
+			  FireOrDefence:(BOOL)isDefence
 {
     if (m_engine != NULL)
     {
         delete m_engine;
         m_engine = NULL;
     }
+	isDefenceMode = isDefence;
 	
     // Generate and Bind Textures
 	CGImageRef brushImage;
@@ -130,7 +133,7 @@ float mousePointY2 = 0;
 	}
 	
     m_engine = new FireOnPaperEngine();
-    m_engine->Initialize(m_width, m_height, gl, textureImageID);
+    m_engine->Initialize(m_width, m_height, gl, textureImageID, isDefenceMode);
     canBufferDestroyed = NO;
 	
     return self;
@@ -190,6 +193,7 @@ float mousePointY2 = 0;
 	if (motionManager.accelerometerAvailable) {
         CMAccelerometerData *accelerometerData = motionManager.accelerometerData;
 		m_engine->OnRotateWithAccelerometer(accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
+        //NSLog(@"\n 时空转转转，我经历了悲喜:  x: %f y: %f z: %f \n",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
 	}
 	[self drawView: nil];
 }
@@ -277,18 +281,18 @@ float mousePointY2 = 0;
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
     
-	const double ALPHA = 0.20;
+	const double ALPHA = 0.10;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;	
 	
-	if (lowPassResults < 0.6)
+	if (lowPassResults < 0.75)
     {
 		
     }
     else
     {
-        m_engine->OnDisturbWithMicrophone(false, true, lowPassResults * 1.0 / 0.6);
-        NSLog(@"\n 树欲静而风不止:    %f \n",lowPassResults);
+        m_engine->OnDisturbWithMicrophone(false, true, lowPassResults * 1.0 / 0.75);
+        //NSLog(@"\n 树欲静而风不止:    %f \n",lowPassResults);
     }
 }
 
@@ -303,8 +307,11 @@ float mousePointY2 = 0;
 	mousePointX1 = location.x/((float)m_width);
 	mousePointY1 = location.y/((float)m_height);
 	
+	if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX1, mousePointY1);
+	else m_engine->OnTouchPaperToBurn(mousePointX1, mousePointY1);
+
 	//NSLog(@"touches Begin at x = %f, y = %f", location.x, location.y);
-	NSLog(@"touches Begin at x = %f, y = %f", mousePointX1, mousePointY1);
+	//NSLog(@"touches Begin at x = %f, y = %f", mousePointX1, mousePointY1);
 }
 
 // Handles the continuation of a touch.
@@ -320,10 +327,11 @@ float mousePointY2 = 0;
 	mousePointX2 = location.x/((float)m_width);
 	mousePointY2 = location.y/((float)m_height);
 	
-    m_engine->OnTouchChangePaperMaterial(mousePointX2, mousePointY2);
+    if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX2, mousePointY2);
+    else m_engine->OnTouchPaperToBurn(mousePointX2, mousePointY2);
     
 	//NSLog(@"touches Move at x = %f, y = %f", location.x, location.y);
-	NSLog(@"touches Move at x = %f, y = %f", mousePointX2, mousePointY2);
+	//NSLog(@"touches Move at x = %f, y = %f", mousePointX2, mousePointY2);
 }
 
 // Handles the end of a touch event when the touch is a tap.
@@ -340,7 +348,7 @@ float mousePointY2 = 0;
 	boolMouseMoving = false;
 	
 	//NSLog(@"touches End at x = %f, y = %f", location.x, location.y);
-	NSLog(@"touches End at x = %f, y = %f", mousePointX1, mousePointY1);
+	//NSLog(@"touches End at x = %f, y = %f", mousePointX1, mousePointY1);
 }
 
 // Handles the end of a touch event.

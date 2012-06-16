@@ -39,6 +39,8 @@ void CFireParticleSystem::Initialize(OpenGLES::OpenGLESContext *_gl, GLuint *_te
 	m_fMinEmitSpeed = 10.0f;
 	SetEmissionDirection(Vector3D(0.0f,0.0f,0.0f),Vector3D(0.0f,0.0f,0.0f));
 	SetEmitter(Vector3D(0.0f,0.0f,0.0f), Vector3D(0.2f,0.2f,0.0f));
+    
+    gl->glGenBuffers(1, &m_vertexBuffer);
 }
 
 void CFireParticleSystem::BeforeRender()

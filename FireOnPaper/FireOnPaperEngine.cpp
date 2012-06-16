@@ -14,7 +14,7 @@ FireOnPaperEngine::FireOnPaperEngine()
 	
 }
 
-void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID)
+void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, bool isDefenceMode)
 {
 	gl = _gl;
 	textureImageID = _textureImageID;
@@ -29,7 +29,7 @@ void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESCont
             logicPaper[y][x] = true;
     paper->SetPaperLogicShape(logicPaper, 0, 0);
     paper->SetPaperWorldSize(PAPER_WIDTH, PAPER_HEIGHT, PAPER_LEFT_TOP_X, PAPER_LEFT_TOP_Y);
-    paper->GivePaperFirstFire();
+    if (isDefenceMode) paper->GivePaperFirstFire();
 	
 	for (int i = 0; i < FIRE_SYSTEM_NUM; i++) fire_system[i].Initialize(gl, textureImageID, env, FIRE_NUM);
 	
@@ -87,10 +87,13 @@ void FireOnPaperEngine::OnDisturbWithMicrophone(bool has_direction, bool from_le
 void FireOnPaperEngine::OnTouchChangePaperMaterial(float _x_0_1, float _y_0_1)
 {
     paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT));
-    //paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH+1), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT));
     paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH-1), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT));
-    //paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT+1));
     paper->TouchChangePaperMaterial((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT-1));
+}
+
+void FireOnPaperEngine::OnTouchPaperToBurn(float _x_0_1, float _y_0_1)
+{
+    paper->TouchPaperToBurn((int)(_x_0_1 * SPACE_LOGIC_WIDTH), (int)(_y_0_1 * SPACE_LOGIC_HEIGHT));
 }
 
 void FireOnPaperEngine::SetStopRendering()

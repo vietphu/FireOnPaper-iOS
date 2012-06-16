@@ -318,6 +318,10 @@ void Paper::DoRefreshPaperStatus()
 void Paper::GivePaperFirstFire()
 {
     mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-1)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-1)]->mTemperature += 900;
+    mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-2)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-1)]->mTemperature += 900;
+    mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-1)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-2)]->mTemperature += 900;
+    mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-3)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-1)]->mTemperature += 900;
+    mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-1)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-3)]->mTemperature += 900;
 }
 
 void Paper::TouchChangePaperMaterial(int spaceLogicX, int spaceLogicY)
@@ -331,6 +335,66 @@ void Paper::TouchChangePaperMaterial(int spaceLogicX, int spaceLogicY)
         {
             mPaperUnits[paper_logic_y][paper_logic_x]->mPhlogistonQuantity = TOUCH_SET_PHLOGISTON_DENSITY;
             //cout<<"add fire at: "<<paper_logic_x<<" "<<paper_logic_y<<endl;
+        }
+    }
+}
+
+void Paper::TouchPaperToBurn(int spaceLogicX, int spaceLogicY)
+{
+    int paper_logic_x = logicSpaceX2LogicPaperX(spaceLogicX);
+    int paper_logic_y = logicSpaceY2LogicPaperY(spaceLogicY);
+    if (IsValidPaperLogicCoord(paper_logic_x, paper_logic_y)) 
+    {
+        if (mPaperUnits[paper_logic_y][paper_logic_x]->mIsExist) 
+        {
+            mPaperUnits[paper_logic_y][paper_logic_x]->mPhlogistonQuantity = 0;
+            mPaperUnits[paper_logic_y][paper_logic_x]->mIsExist = false;
+            mPaperUnits[paper_logic_y][paper_logic_x]->mIsBurning = false;
+            mEnv->ResetSpaceFire(spaceLogicX, spaceLogicY);
+            mDrawTree->change(paper_logic_x, paper_logic_y);
+            
+            int x,y;
+            
+            x = spaceLogicX-1;
+            y = spaceLogicY-1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX-1;
+            y = spaceLogicY;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX-1;
+            y = spaceLogicY+1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX;
+            y = spaceLogicY-1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX;
+            y = spaceLogicY+1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX+1;
+            y = spaceLogicY-1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX+1;
+            y = spaceLogicY;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
+            x = spaceLogicX+1;
+            y = spaceLogicY+1;
+            if (IsValidSpaceLogicCoord(x, y))
+                mSpaceUnits[y][x]->mTemperature += 900;
+            
         }
     }
 }
