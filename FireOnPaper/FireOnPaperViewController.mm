@@ -63,6 +63,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
             recorder.meteringEnabled = YES;
             [recorder record];
         }
+		
+		[self.view addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)]];
+		
     }
     return self;
 }
@@ -78,6 +81,9 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	}
     imageFrame = imageView.frame;
 	self.imagePickerUsed = NO;
+	self.backButton.hidden = YES;
+	self.homeButton.hidden = YES;
+	self.menuButton.hidden = YES;
 }
 
 - (void)viewDidUnload
@@ -316,6 +322,13 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (void)handlePinchGesture:(UIPinchGestureRecognizer *)gesture
+{
+    if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
+		if (gesture.scale < 1 && gesture.numberOfTouches >= 2) [self backButtonSelected:nil];
+	}
 }
 
 @end

@@ -159,6 +159,7 @@ float mousePointY2 = 0;
     if (displayLink != nil) {
         float elapseSeconds = displayLink.timestamp - m_timestamp;
         m_timestamp = displayLink.timestamp;
+		NSLog(@"%lf FPS\n", 1.0 / elapseSeconds);
 		m_engine->UpdateAnimation(elapseSeconds);
     }
 	m_engine->Render();
