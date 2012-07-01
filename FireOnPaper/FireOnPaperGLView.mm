@@ -26,22 +26,21 @@ float mousePointY2 = 0;
 	  FireOrDefence:(BOOL)isDefence
 {
     if (self = [super initWithFrame:frame]) {
+		// get the context
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*) super.layer;
         eaglLayer.opaque = YES;
-        
         EAGLRenderingAPI api = kEAGLRenderingAPIOpenGLES2;
         m_context = [[EAGLContext alloc] initWithAPI:api];
-        
         if (!m_context) {
             api = kEAGLRenderingAPIOpenGLES1;
             m_context = [[EAGLContext alloc] initWithAPI:api];
         }
-        
         if (!m_context || ![EAGLContext setCurrentContext:m_context]) {
             [self release];
             return nil;
         }
 		
+		// initialize the gles-bc object with api 2.0 or 1.1 
         if (api == kEAGLRenderingAPIOpenGLES1) {
             NSLog(@"Using OpenGL ES 1.1");
 			gl = new OpenGLES1::OpenGLES11Context();
@@ -50,31 +49,30 @@ float mousePointY2 = 0;
 			gl = new OpenGLES2::OpenGLES20Context();
         }
 		
+		// get screen width and height
 		m_width = CGRectGetWidth(frame);
 		m_height = CGRectGetHeight(frame);
 		
+		// reinitialzation
 		[self reInitWithPaperToFire:paperToFire FireOrDefence:isDefence];
 		
-        //[self drawView: nil];
+		// setup accelerometer attributes
         m_timestamp = CACurrentMediaTime();
-        
         CADisplayLink* displayLink;
         displayLink = [CADisplayLink displayLinkWithTarget:self
                                                   selector:@selector(drawView:)];
         [displayLink setFrameInterval:animationFrameInterval];
         [displayLink addToRunLoop:[NSRunLoop currentRunLoop]
                           forMode:NSDefaultRunLoopMode];
-        
         [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-        
         [[NSNotificationCenter defaultCenter]
          addObserver:self
          selector:@selector(didRotate:)
          name:UIDeviceOrientationDidChangeNotification
          object:nil];
 		
+		// initialze motion manager for record accelerometer information
 		self.motionManager = [[CMMotionManager alloc] init];
-		
 		if (motionManager.accelerometerAvailable) {
 			motionManager.accelerometerUpdateInterval = 1.0 / 10.0;
 			[motionManager startAccelerometerUpdates];
@@ -83,6 +81,7 @@ float mousePointY2 = 0;
 			NSLog(@"This device has no accelerometer.");
 		}
         
+		// get microphone recorder and timer
         recorder = superRecorder;
 		levelTimer = [NSTimer scheduledTimerWithTimeInterval: 0.04 target: self selector: @selector(levelTimerCallback:) userInfo: nil repeats: YES];
  
@@ -132,6 +131,7 @@ float mousePointY2 = 0;
 			NSLog(@"initWithFrame brushImage error!");
 	}
 	
+	// initialze fire on paper engine
     m_engine = new FireOnPaperEngine();
     m_engine->Initialize(m_width, m_height, gl, textureImageID, isDefenceMode);
     canBufferDestroyed = NO;
@@ -156,14 +156,17 @@ float mousePointY2 = 0;
 	[EAGLContext setCurrentContext:m_context];
 	gl->glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
 	
+	// update stage
     if (displayLink != nil) {
         float elapseSeconds = displayLink.timestamp - m_timestamp;
         m_timestamp = displayLink.timestamp;
 		NSLog(@"%lf FPS\n", 1.0 / elapseSeconds);
 		m_engine->UpdateAnimation(elapseSeconds);
     }
+	// render stage
 	m_engine->Render();
 	
+	// present render buffer
 	gl->glBindRenderbuffer(GL_RENDERBUFFER, m_renderbuffer);
     [m_context presentRenderbuffer:GL_RENDERBUFFER];
 }
@@ -191,10 +194,11 @@ float mousePointY2 = 0;
 
 - (void)updateDisplay
 {
+	// use accelerometer to rotate the fire
 	if (motionManager.accelerometerAvailable) {
         CMAccelerometerData *accelerometerData = motionManager.accelerometerData;
 		m_engine->OnRotateWithAccelerometer(accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
-        //NSLog(@"\n 时空转转转，我经历了悲喜:  x: %f y: %f z: %f \n",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
+        NSLog(@"\n 时空转转转，我经历了悲喜:  x: %f y: %f z: %f \n",accelerometerData.acceleration.x, accelerometerData.acceleration.y, accelerometerData.acceleration.z);
 	}
 	[self drawView: nil];
 }
@@ -300,14 +304,14 @@ float mousePointY2 = 0;
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	//CGRect bounds = [self bounds];
-    UITouch * touch = [[event touchesForView:self] anyObject];
+	UITouch * touch = [[event touchesForView:self] anyObject];
 	
 	CGPoint location = [touch locationInView:self];
 	
 	mousePointX1 = location.x/((float)m_width);
 	mousePointY1 = location.y/((float)m_height);
 	
+	// fire moder to fire or defence mode to defence
 	if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX1, mousePointY1);
 	else m_engine->OnTouchPaperToBurn(mousePointX1, mousePointY1);
 
@@ -318,8 +322,6 @@ float mousePointY2 = 0;
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {  
-	
-	//CGRect bounds = [self bounds];
 	UITouch * touch = [[event touchesForView:self] anyObject];
 	CGPoint location = [touch locationInView:self];
 	
@@ -328,6 +330,7 @@ float mousePointY2 = 0;
 	mousePointX2 = location.x/((float)m_width);
 	mousePointY2 = location.y/((float)m_height);
 	
+	// fire moder to fire or defence mode to defence
     if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX2, mousePointY2);
     else m_engine->OnTouchPaperToBurn(mousePointX2, mousePointY2);
     
@@ -338,9 +341,7 @@ float mousePointY2 = 0;
 // Handles the end of a touch event when the touch is a tap.
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	//处理单击事件
-	//CGRect bounds = [self bounds];
-    UITouch * touch = [[event touchesForView:self] anyObject];
+	UITouch * touch = [[event touchesForView:self] anyObject];
 	CGPoint location = [touch locationInView:self];
 	
 	boolMouseUp = true;

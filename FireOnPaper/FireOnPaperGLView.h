@@ -21,20 +21,33 @@ using namespace OpenGLES;
 #define IMAGENUM 3
 
 @interface FireOnPaperGLView : UIView {
+	
+	// gles-bc
 	OpenGLES::OpenGLESContext *gl;
+	// context for OpenGLES on iOS
 	EAGLContext * m_context;
+	
+	// screen width and screen height
 	GLint m_width;
 	GLint m_height;
+	
+	// defence mode or fire mode
 	BOOL isDefenceMode;
 	
+	// buffers
     GLuint m_framebuffer;
     GLuint m_renderbuffer;
 	GLuint m_depthRenderbuffer;
+	
+	// boolean of buffer initialized or not
 	BOOL canBufferDestroyed;
+	// texture IDs
 	GLuint textureImageID[IMAGENUM];
 	
+	// fire on paper engine
 	FireOnPaperEngine * m_engine;
 	
+	// Hardware attributes for sensor
 	NSInteger animationFrameInterval;
     float m_timestamp;
     AVAudioRecorder *recorder;
@@ -45,13 +58,16 @@ using namespace OpenGLES;
 @property (retain) CMMotionManager * motionManager;
 @property (retain) NSTimer * updateTimer;
 
+// initialization
 - (id) initWithFrame:(CGRect)frame
 		 paperToFire:(UIImage *)paperToFire
 		withRecorder:(AVAudioRecorder*)superRecorder
 	   FireOrDefence:(BOOL)isDefence;
 
+// reinitialization
 - (id) reInitWithPaperToFire:(UIImage *)paperToFire
 			   FireOrDefence:(BOOL)isDefence;
+// stop rendering
 - (id) stopRendering;
 
 - (void) drawView: (CADisplayLink *) displayLink;

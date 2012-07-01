@@ -15,6 +15,7 @@
 
 Vector3D NULL_VECTOR3D = Vector3D(0.0f, 0.0f, 0.0f);
 
+// set attributes
 void  CFireParticleSystem::SetEmitter(Vector3D pos,Vector3D dev)
 {
 	m_EmitterPosition=pos;
@@ -74,12 +75,8 @@ CFireParticleSystem::CFireParticleSystem()
 	m_EmitDirection=NULL_VECTOR3D;
 	m_EmitDirectionDeviation=NULL_VECTOR3D;
 	
-	/**********************************
-	 这两对重要参数将直接在类初始化
-	 **********************************/
 	m_fMinEmitSpeed=m_fMaxEmitSpeed=0.0f;
 	m_fMinDieAge=m_fMaxDieAge=0.0f;
-	/**********************************/
 	
 	m_AccelerationDirection=NULL_VECTOR3D;
 	m_fMinAcceleration=m_fMaxAcceleration=0.0f;
@@ -92,7 +89,6 @@ CFireParticleSystem::CFireParticleSystem()
 	m_MaxDieColor=NULL_VECTOR3D;
 	
 	m_fMinEmitSpinSpeed=m_fMaxEmitSpinSpeed=0.0f;
-	//匀变速圆周运动
 	m_fMinSpinAcceleration=m_fMaxSpinAcceleration=0.0f;
 	
 	m_fMinEmitSize=m_fMaxEmitSize=m_fMinDieSize=m_fMaxDieSize=1.0f;

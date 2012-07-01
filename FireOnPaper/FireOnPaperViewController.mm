@@ -64,6 +64,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
             [recorder record];
         }
 		
+		// add gesture recognizer with function of handlePinchGesture
 		[self.view addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchGesture:)]];
 		
     }
@@ -74,11 +75,13 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	// decide if display camera button depending on device hardware
 	if (![UIImagePickerController isSourceTypeAvailable:
           UIImagePickerControllerSourceTypeCamera]) {
 		cameraButton.enabled = NO;
 		cameraButton.hidden = YES;
 	}
+	// initialize the views
     imageFrame = imageView.frame;
 	self.imagePickerUsed = NO;
 	self.backButton.hidden = YES;
@@ -88,15 +91,15 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (void)viewDidUnload
 {
+	[super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
 	[self setResetButton:nil];
 	[self setBackButton:nil];
 	[self setHomeButton:nil];
 	[self setMenuButton:nil];
 	[self setFireButton:nil];
 	[self setDefenceButton:nil];
-	[super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 	[self setImageView:nil];
 	[self setCameraButton:nil];
 	[self setPhotoButton:nil];
@@ -107,7 +110,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[imageView release];
 	[cameraButton release];
 	[photoButton release];
-	
+
 	[moviePlayerController release];
 	[image release];
 	[movieURL release];
@@ -140,26 +143,31 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (void)SetupFire:(NSString *)Mode
 {
+	// get defence mode or fire mode
 	BOOL isDefence = [Mode isEqualToString:[NSString stringWithFormat:@"Defence"]];
+	// start animation
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
 	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 	
 	if (self.GLView.superview == nil) {
+		// get image to fire
 		CGSize itemSize = CGSizeMake(512, 512);
 		UIGraphicsBeginImageContext(itemSize);
 		CGRect imageRect = CGRectMake(0, 0, itemSize.width, itemSize.height);
 		[imageView.image drawInRect:imageRect];
 		imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
-		if (self.GLView == nil) {
+		if (self.GLView == nil) { // alloc and initialize the fire on paper view
 			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder FireOrDefence:isDefence];
-		} else {
+		} else { // reinitialize the fire on paper view
             [self.GLView reInitWithPaperToFire:imageView.image FireOrDefence:isDefence];
         }
+		// display the fire on paper view
 		[self.view insertSubview:self.GLView atIndex:6];
 	}
 	
+	// end animation
 	[UIView setAnimationTransition: UIViewAnimationTransitionCurlUp
 						   forView:self.view cache:NO];
 	[UIView commitAnimations];
@@ -167,30 +175,37 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (IBAction)fireButtonSelected:(UIButton *)sender
 {
+	// fire mode
 	[self SetupFire:sender.titleLabel.text];
 }
 
 - (IBAction)cameraButtonSelected:(id)sender
 {
+	// use camera to get photo
 	[self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
 }
 
 - (IBAction)photoButtonSelected:(id)sender
 {
+	// use photo library to get photo
 	[self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
 - (IBAction)backButtonSelected:(id)sender
 {
 	if (self.GLView.superview != nil) {
+		// start animation
 		[UIView beginAnimations:@"View Flip" context:nil];
 		[UIView setAnimationDuration:1.25];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 		
+		// remove the fire on paper view
 		[self.GLView removeFromSuperview];
 		
+		// stop rendering the fire on paper view
 		[self.GLView stopRendering];
 		
+		// end animation
 		[UIView setAnimationTransition: UIViewAnimationTransitionCurlDown
 							   forView:self.view cache:YES];
 		[UIView commitAnimations];
@@ -206,6 +221,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 }
 
 - (IBAction)resetButtonSelected:(id)sender {
+	// reset the default image to fire
 	imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"texture0.png"]];
 }
 
@@ -213,19 +229,23 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 #pragma mark UIImagePickerController delegate methods
 - (void)imagePickerController:(UIImagePickerController *)picker 
 didFinishPickingMediaWithInfo:(NSDictionary *)info {
+	// get last chosen photo or video
     self.lastChosenMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
+		// resize the chose photo with size of 2:3
         UIImage *resizedImage = [[self class] resizedImageWithInfo:info withWidthRatio:2.0 withHeightRatio:3.0];
         UIImage *shrunkenImage = shrinkImage(resizedImage, imageFrame.size);
         self.image = shrunkenImage;
     } else if ([lastChosenMediaType isEqual:(NSString *)kUTTypeMovie]) {
         self.movieURL = [info objectForKey:UIImagePickerControllerMediaURL];
     }
+	// end picker
 	self.imagePickerUsed = YES;
     [picker dismissModalViewControllerAnimated:YES];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+	// end picker
 	self.imagePickerUsed = NO;
     [picker dismissModalViewControllerAnimated:YES];
 }
@@ -238,6 +258,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 {
 	UIImage * resultImage = [info objectForKey:UIImagePickerControllerEditedImage];
 	
+	// resize the rectangle of the photo
 	CGRect rect;
 	if (width < height) {
 		rect.size.height = CGImageGetHeight([resultImage CGImage]);
@@ -246,6 +267,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 		rect.origin.y = 0;
 	}
 	
+	// resize the photo with the rectangle above
 	CGImageRef imageRef = CGImageCreateWithImageInRect([resultImage CGImage], rect);
     
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
@@ -264,6 +286,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
 #pragma mark  -
 #pragma mark Setup UIImagePickerController
 static UIImage *shrinkImage(UIImage *original, CGSize size) {
+	
+	// shrink image from orignial to new with size of "size"
     CGFloat scale = [UIScreen mainScreen].scale;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     
@@ -282,6 +306,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
 }
 
 - (void)updateDisplay {
+	// update the image view displaying image to fire
 	if (!self.imagePickerUsed) return ;
 	self.imagePickerUsed = NO;
     if ([lastChosenMediaType isEqual:(NSString *)kUTTypeImage]) {
@@ -300,6 +325,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
 }
 
 - (void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType {
+	// get Media from camera or photo library
     NSArray *mediaTypes = [UIImagePickerController
                            availableMediaTypesForSourceType:sourceType];
     if ([UIImagePickerController isSourceTypeAvailable:
@@ -324,6 +350,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size) {
     }
 }
 
+// Pinch Gesture ==> back
 - (void)handlePinchGesture:(UIPinchGestureRecognizer *)gesture
 {
     if ((gesture.state == UIGestureRecognizerStateChanged) || (gesture.state == UIGestureRecognizerStateEnded)) {
