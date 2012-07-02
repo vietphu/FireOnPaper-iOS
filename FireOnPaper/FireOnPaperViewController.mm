@@ -58,7 +58,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
         NSError *error;
 		recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
         if (recorder) {
-			// TODO bug to fix
             [recorder prepareToRecord];
             recorder.meteringEnabled = YES;
             [recorder record];

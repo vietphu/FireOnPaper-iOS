@@ -286,6 +286,9 @@ float mousePointY2 = 0;
 - (void)levelTimerCallback:(NSTimer *)timer {
 	[recorder updateMeters];
     
+    //低通滤波，累计计算经调整的低频波段的声音强度
+    //参考自Detecting blowing on the iPhone microphone?.
+    //http://stackoverflow.com/questions/795968/detecting-blowing-on-the-iphone-microphone
 	const double ALPHA = 0.10;
 	double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
 	lowPassResults = ALPHA * peakPowerForChannel + (1.0 - ALPHA) * lowPassResults;	

@@ -11,6 +11,7 @@
 
 SpaceUnit::SpaceUnit()
 {
+    //设置起始参数
     mTemperature = TPRT_ROOM;
 }
 

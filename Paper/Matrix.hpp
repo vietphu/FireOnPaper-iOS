@@ -1,6 +1,7 @@
 #pragma once
 #include "Vector.hpp"
 
+//矩阵工具库 参考自《iphone三维程序设计》 
 template <typename T>
 struct Matrix2 {
     Matrix2()

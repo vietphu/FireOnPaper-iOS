@@ -15,6 +15,7 @@
 #include <set>
 using namespace std;
 
+//优化绘制过程的二维线段树
 class DrawTreeNode
 {
 private:

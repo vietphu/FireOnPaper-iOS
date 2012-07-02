@@ -12,6 +12,7 @@
 #include "PaperUnit.hpp"
 #include "Parameters.hpp"
 
+//管理空间单元的各种属性
 class SpaceUnit
 {
 public:

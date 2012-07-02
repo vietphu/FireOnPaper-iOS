@@ -32,22 +32,28 @@ using namespace std;
 class Env
 {
 public:
+    //火纸交互位图，用于记录空间的哪些位置存在火焰
     bitset<SPACE_LOGIC_HEIGHT*SPACE_LOGIC_WIDTH> mSpaceIsFireBitMap;
     
+    //记录每个空间位置的火焰浓度，这将决定热量传递量
     float mFireParticlesDensity[SPACE_LOGIC_HEIGHT][SPACE_LOGIC_WIDTH];
 	
     Env() 
     {
+        //初始化
 		memset(mFireParticlesDensity, 0, sizeof(mFireParticlesDensity));
     }
+    //将一个空间位置设置为有火焰
     void SetSpaceFire(int _spaceLogicX, int _spaceLogicY)
     {
         mSpaceIsFireBitMap.set(_spaceLogicY*SPACE_LOGIC_WIDTH+_spaceLogicX);
     }
+    //将一个空间位置设置为没有火焰
     void ResetSpaceFire(int _spaceLogicX, int _spaceLogicY)
     {
         mSpaceIsFireBitMap.reset(_spaceLogicY*SPACE_LOGIC_WIDTH+_spaceLogicX);
     }
+    //获取一个位置是否有火焰
     bool GetSpaceFire(int _spaceLogicX, int _spaceLogicY)
     {
 		int tmp = _spaceLogicY*SPACE_LOGIC_WIDTH+_spaceLogicX;

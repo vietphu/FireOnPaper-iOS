@@ -6,6 +6,7 @@
 const float Pi = 4 * std::atan(1.0f);
 const float TwoPi = 2 * Pi;
 
+//向量工具库 参考自《iphone三维程序设计》
 template <typename T>
 struct Vector2 {
     Vector2() {}

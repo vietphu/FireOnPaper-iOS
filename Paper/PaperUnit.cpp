@@ -11,6 +11,7 @@
 
 PaperUnit::PaperUnit(int phlogistonQuantity)
 {    
+    //设置参数
     mTemperature = TPRT_ROOM;
     mPhlogistonQuantity = phlogistonQuantity;
     

@@ -11,8 +11,10 @@
 
 using namespace std;
 
+
 Paper::Paper()
 {
+    //初始化所有的参数 包括物理模型的各个系数值和
     mHeatCapacity = HEAT_CAPACITY_SPACE;
     mHeatSpreadRatioSpaceToSpace = HEAT_SPREADRATIO_SPACE_TO_SPACE;
     mHeatSpreadRatioFireToSpace = HEAT_SPREADRATIO_FIRE_TO_SPACE;
@@ -23,7 +25,7 @@ Paper::Paper()
     mPhloHeatConvRatio = HEAT_PER_PHLOGISTON;
     mIgnitionTemperature = TPRT_NORMALPAPER_IGNITION;
 
-    
+    //初始化纸单元信息记录数组和空间单元信息记录数组
     for (int y=0; y<PAPER_LOGIC_HEIGHT; y++)
         for (int x=0; x<PAPER_LOGIC_WIDTH; x++)
             mPaperUnits[y][x] = new PaperUnit(NORMALPAPER_PHLOGISTON_DENSITY);
@@ -31,13 +33,16 @@ Paper::Paper()
         for (int x=0; x<SPACE_LOGIC_WIDTH; x++)
             mSpaceUnits[y][x] = new SpaceUnit();
     
+    //初始化热量交换缓存
     memset(mExchangeHeatBuffer, 0, sizeof(mExchangeHeatBuffer));
     
+    //初始化二维线段树
     mDrawTree = new DrawTree(0, 0, PAPER_LOGIC_WIDTH-1, PAPER_LOGIC_HEIGHT-1);
 }
 
 void Paper::Initialize(OpenGLES::OpenGLESContext *_gl, GLuint *_textureImageID, Env * env)
 {
+    //设置gl上下文，纹理数组，与火焰交互的接口参数包
 	gl = _gl;
 	textureImageID = _textureImageID;
     mEnv = env;
@@ -66,6 +71,8 @@ void Paper::Render()
     set<DrawTreeNode*> nodeset = mDrawTree->getLeafNodeSet();
     vector<GLushort>::iterator index = mPaperIndices.begin();
     
+    //根据drawtree中的信息，来决定要绘制哪些矩形
+    //在这里会生成这些要绘制的矩形的索引数组
     int size = 0;
     int leftTopRectX;
     int leftTopRectY;
@@ -88,6 +95,7 @@ void Paper::Render()
         size++;
     }
     
+    //绘制
     gl->glDrawElements(GL_TRIANGLES, 6*size, GL_UNSIGNED_SHORT, indices); 
     
     gl->glDisable(GL_BLEND);
@@ -108,6 +116,7 @@ void Paper::OnRotateWithAccelerometer(double x, double y, double z)
 
 void Paper::SetPaperLogicShape(bool paperBitmap[PAPER_LOGIC_HEIGHT][PAPER_LOGIC_WIDTH], int handHoldPointX, int handHoldPointY)
 {    
+    //对每一个需要设置为存在的纸片单元设置为存在
     for (int y=0; y<PAPER_LOGIC_HEIGHT; y++)
         for (int x=0; x<PAPER_LOGIC_WIDTH; x++)
             if (paperBitmap[y][x])
@@ -119,6 +128,7 @@ void Paper::SetPaperLogicShape(bool paperBitmap[PAPER_LOGIC_HEIGHT][PAPER_LOGIC_
 
 void Paper::SetPaperWorldSize(float width, float length, float lefttopX, float lefttopY)
 {
+    //设置纸片空间尺寸 并生成顶点数组
     mPaperWorldWidth = width;
     mPaperWorldLength = length;
     mPaperWorldLeftTopX = lefttopX;
@@ -129,6 +139,8 @@ void Paper::SetPaperWorldSize(float width, float length, float lefttopX, float l
 
 void Paper::DoPaperCreateHeat()
 {
+    //遍历纸片数组 对每一个标记为正燃烧的，按照燃素消耗速度消耗燃素
+    //此处还可以优化
     for (int y=0; y<PAPER_LOGIC_HEIGHT; y++)
         for (int x=0; x<PAPER_LOGIC_WIDTH; x++)
             if (mPaperUnits[y][x]->mIsBurning) 
@@ -140,6 +152,7 @@ void Paper::DoPaperCreateHeat()
 
 void Paper::DoSpaceToSpaceHeatSpread()
 {
+    //对于每一个空间单元 进行热量的传导传递和辐射散失
     for (int y=0; y<SPACE_LOGIC_HEIGHT; y++)
         for (int x=0; x<SPACE_LOGIC_WIDTH; x++)
         {
@@ -243,6 +256,7 @@ void Paper::DoSpaceToSpaceHeatSpread()
 
 void Paper::DoFireToSpaceHeatSpread()
 {
+    //从和火焰交互传递对象env中，得知火焰位置，并且对火焰位置对应的空间单元，按照预置系数进行升温
     for (int y=0; y<SPACE_LOGIC_HEIGHT; y++)
         for (int x=0; x<SPACE_LOGIC_WIDTH; x++)
         {
@@ -252,6 +266,10 @@ void Paper::DoFireToSpaceHeatSpread()
 
 void Paper::DoRefreshPaperStatus()
 {
+    //更新纸片状态
+    //包括从热量缓存中将热量交换到空间单元中
+    //和将空间单元中将温度交换到对应格点的纸片单元中
+    //并且此时要测试纸片是否燃尽和测试纸片是否被点燃
     for (int y=0; y<SPACE_LOGIC_HEIGHT; y++)
     {
         for (int x=0; x<SPACE_LOGIC_WIDTH; x++)
@@ -317,6 +335,7 @@ void Paper::DoRefreshPaperStatus()
 
 void Paper::GivePaperFirstFire()
 {
+    //给予纸片左下角一个初始的热量
     mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-1)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-1)]->mTemperature += 900;
     mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-2)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-1)]->mTemperature += 900;
     mSpaceUnits[logicPaperY2LogicSpaceY(PAPER_LOGIC_HEIGHT-1)][logicPaperX2LogicSpaceX(PAPER_LOGIC_WIDTH-2)]->mTemperature += 900;
@@ -326,6 +345,7 @@ void Paper::GivePaperFirstFire()
 
 void Paper::TouchChangePaperMaterial(int spaceLogicX, int spaceLogicY)
 {
+    //对于触摸位置，若当格纸片未被烧尽，则重新设置其燃素含量
     //cout<<"Space logic position at: "<<spaceLogicX<<" "<<spaceLogicY<<endl;
     int paper_logic_x = logicSpaceX2LogicPaperX(spaceLogicX);
     int paper_logic_y = logicSpaceY2LogicPaperY(spaceLogicY);
@@ -341,6 +361,8 @@ void Paper::TouchChangePaperMaterial(int spaceLogicX, int spaceLogicY)
 
 void Paper::TouchPaperToBurn(int spaceLogicX, int spaceLogicY)
 {
+    //对于触摸位置，将改点和改点周围的空间单元的温度进行提升
+    //因而有可能将导致周围若存在的纸片发生燃烧
     int paper_logic_x = logicSpaceX2LogicPaperX(spaceLogicX);
     int paper_logic_y = logicSpaceY2LogicPaperY(spaceLogicY);
     if (IsValidPaperLogicCoord(paper_logic_x, paper_logic_y)) 
@@ -401,6 +423,7 @@ void Paper::TouchPaperToBurn(int spaceLogicX, int spaceLogicY)
 
 bool Paper::IsValidPaperLogicCoord(int paperLogicX, int paperLogicY)
 {
+    //若超过上下限即为不合法的坐标
     if ( 0 <= paperLogicX && paperLogicX < PAPER_LOGIC_WIDTH && 0 <= paperLogicY && paperLogicY < PAPER_LOGIC_HEIGHT ) {
         return true;
     }
@@ -409,6 +432,7 @@ bool Paper::IsValidPaperLogicCoord(int paperLogicX, int paperLogicY)
 
 bool Paper::IsValidSpaceLogicCoord(int spaceLogicX, int spaceLogicY)
 {
+    //若超过上下限即为不合法的坐标
     if ( 0 <= spaceLogicX && spaceLogicX < SPACE_LOGIC_WIDTH && 0 <= spaceLogicY && spaceLogicY < SPACE_LOGIC_HEIGHT ) {
         return true;
     }
@@ -417,6 +441,7 @@ bool Paper::IsValidSpaceLogicCoord(int spaceLogicX, int spaceLogicY)
 
 bool Paper::IsBuringBorder(int paperLogicX, int paperLogicY)
 {
+    //若该点正燃烧，并且周围有点的纸单元不存在，则这就是一个燃烧边缘
     if (!mPaperUnits[paperLogicY][paperLogicX]->mIsBurning) {
         return false;
     }
@@ -473,6 +498,7 @@ void Paper::GenVOB()
 
 Paper::~Paper()
 {
+    //删除所有的纸片单元和空间单元
     for (int y=0; y<PAPER_LOGIC_HEIGHT; y++)
         for (int x=0; x<PAPER_LOGIC_WIDTH; x++)
             if (mPaperUnits[y][x])
