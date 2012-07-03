@@ -16,10 +16,11 @@
 
 using namespace std;
 
-#define logicSpaceX2LogicPaperX(x) (x-PAPER_SPACE_ADJUST_WIDTH)
-#define logicSpaceY2LogicPaperY(y) (y-PAPER_SPACE_ADJUST_HEIGHT)
-#define logicPaperX2LogicSpaceX(x) (x+PAPER_SPACE_ADJUST_WIDTH)
-#define logicPaperY2LogicSpaceY(y) (y+PAPER_SPACE_ADJUST_HEIGHT)
+#define logicSpaceX2LogicPaperX(x) ((x-PAPER_SPACE_ADJUST_WIDTH)*2)
+#define logicSpaceY2LogicPaperY(y) ((y-PAPER_SPACE_ADJUST_HEIGHT)*2)
+#define logicPaperX2LogicSpaceX(x) ((x)/2+PAPER_SPACE_ADJUST_WIDTH)
+#define logicPaperY2LogicSpaceY(y) ((y)/2+PAPER_SPACE_ADJUST_HEIGHT)
+
 #define logicSpaceX2ScreenX(x) (float)(-(float)SCREEN_WIDTH/2+(float)x*SCREEN_WIDTH/(float)SPACE_LOGIC_WIDTH)
 #define logicSpaceY2ScreenY(y) (float)((float)SCREEN_HEIGHT/2-(float)y*SCREEN_HEIGHT/(float)SPACE_LOGIC_HEIGHT)
 #define logicPaperX2ScreenX(x) (float)(-(float)SCREEN_WIDTH/2+(float)logicPaperX2LogicSpaceX(x)*SCREEN_WIDTH/(float)SPACE_LOGIC_WIDTH)

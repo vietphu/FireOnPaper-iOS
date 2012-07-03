@@ -52,8 +52,9 @@ void FireOnPaperEngine::Render()
 
     // Change view point
 	gl->glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+
 	gl->glMatrixMode(GL_PROJECTION);
-	gl->glLoadIdentity();
+	gl->glLoadIdentity();    
     gl->glOrthof(-SCREEN_WIDTH/2, SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, SCREEN_HEIGHT/2, -10.0f, 10.0f);
     
 	//render paper and fire

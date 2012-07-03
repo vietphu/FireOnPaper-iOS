@@ -328,6 +328,15 @@ void Paper::DoRefreshPaperStatus()
                         mEnv->SetSpaceFire(logicPaperX2LogicSpaceX(x), logicPaperY2LogicSpaceY(y));
                     }
                 }
+                if (!mPaperUnits[y][x]->mIsBurning) {
+                    //通过切向差值方法检测边缘，以调整圆滑度，减少锯齿感
+                    if (IsNotDrawThisPoint(x, y)) {
+                        mPaperUnits[y][x]->mPhlogistonQuantity = 0;
+                        mPaperUnits[y][x]->mIsBurning = false;
+                        mPaperUnits[y][x]->mIsExist = false;
+                        mDrawTree->change(x, y);
+                    }
+                }
             }    
     
     memset(mExchangeHeatBuffer, 0, sizeof(mExchangeHeatBuffer));
@@ -451,6 +460,26 @@ bool Paper::IsBuringBorder(int paperLogicX, int paperLogicY)
     if (!mPaperUnits[paperLogicY-1][paperLogicX]->mIsExist || !mPaperUnits[paperLogicY+1][paperLogicX]->mIsExist || !mPaperUnits[paperLogicY][paperLogicX-1]->mIsExist || !mPaperUnits[paperLogicY][paperLogicX+1]->mIsExist || !mPaperUnits[paperLogicY-1][paperLogicX-1]->mIsExist || !mPaperUnits[paperLogicY+1][paperLogicX+1]->mIsExist || !mPaperUnits[paperLogicY+1][paperLogicX-1]->mIsExist || !mPaperUnits[paperLogicY-1][paperLogicX+1]->mIsExist) {
         return true;
     }
+    return false;
+}
+
+//测试当前的切小纸片单元是否应该被绘制 默认传入的坐标是合法的
+bool Paper::IsNotDrawThisPoint(int paperLogicX, int paperLogicY)
+{
+    if (!IsValidPaperLogicCoord(paperLogicX-1, paperLogicY-1) ||
+        !IsValidPaperLogicCoord(paperLogicX-1, paperLogicY+1) ||
+        !IsValidPaperLogicCoord(paperLogicX+1, paperLogicY-1) ||
+        !IsValidPaperLogicCoord(paperLogicX+1, paperLogicY+1) ) 
+        return false;
+    
+    if ( !mPaperUnits[paperLogicY-1][paperLogicX-1]->mIsExist &&
+        !mPaperUnits[paperLogicY+1][paperLogicX+1]->mIsExist )
+        return true;
+
+    if ( !mPaperUnits[paperLogicY-1][paperLogicX+1]->mIsExist &&
+        !mPaperUnits[paperLogicY+1][paperLogicX-1]->mIsExist )
+        return true;
+    
     return false;
 }
 

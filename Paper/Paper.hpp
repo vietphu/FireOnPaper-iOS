@@ -130,6 +130,8 @@ private:
     bool IsBuringBorder(int paperLogicX, int paperLogicY);
     //工具函数 测试当前纸片单元是否已经着火 传入参数为纸片逻辑坐标
     bool GetPaperIsFire(int paperLogicX, int paperLogicY);
+    //工具函数 测试当前纸片单元是否应该直接不被画
+    bool IsNotDrawThisPoint(int paperLogicX, int paperLogicY);
     //生成顶点数组，以备顶点索引进行调用
     void GenVOB();
    

@@ -11,14 +11,14 @@
 
 #define INVALID -948155
 
-#define PAPER_LOGIC_WIDTH 100      // % 10 should be 0 纸片的逻辑宽度
-#define PAPER_LOGIC_HEIGHT 150     // % 10 should be 0 纸片的逻辑高度
+#define PAPER_LOGIC_WIDTH 200//100      // % 10 should be 0 纸片的逻辑宽度
+#define PAPER_LOGIC_HEIGHT 300//150     // % 10 should be 0 纸片的逻辑高度
 
-#define SPACE_LOGIC_WIDTH ((PAPER_LOGIC_WIDTH)/5*6) //空间的逻辑宽度
-#define SPACE_LOGIC_HEIGHT ((PAPER_LOGIC_HEIGHT)/5*6) //空间的逻辑高度
+#define SPACE_LOGIC_WIDTH 120//((PAPER_LOGIC_WIDTH)/5*6) //空间的逻辑宽度
+#define SPACE_LOGIC_HEIGHT 180//((PAPER_LOGIC_HEIGHT)/5*6) //空间的逻辑高度
 
-#define PAPER_SPACE_ADJUST_WIDTH ((PAPER_LOGIC_WIDTH)/10) //纸片距空间边缘的逻辑宽度
-#define PAPER_SPACE_ADJUST_HEIGHT ((PAPER_LOGIC_HEIGHT)/10) //纸片距空间边缘的逻辑高度
+#define PAPER_SPACE_ADJUST_WIDTH 10//((PAPER_LOGIC_WIDTH)/10) //纸片距空间边缘的逻辑宽度
+#define PAPER_SPACE_ADJUST_HEIGHT 15//((PAPER_LOGIC_HEIGHT)/10) //纸片距空间边缘的逻辑高度
 
 #define SCREEN_WIDTH 30.0f //屏幕的实际宽度尺寸
 #define SCREEN_HEIGHT 45.0f //屏幕的实际高度尺寸
