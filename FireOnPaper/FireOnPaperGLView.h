@@ -31,8 +31,8 @@ using namespace OpenGLES;
 	GLint m_width;
 	GLint m_height;
 	
-	// defence mode or fire mode
-	BOOL isDefenceMode;
+	// defence mode, fire mode or show3d mode
+	int play_mode;
 	
 	// buffers
     GLuint m_framebuffer;
@@ -61,12 +61,12 @@ using namespace OpenGLES;
 // initialization
 - (id) initWithFrame:(CGRect)frame
 		 paperToFire:(UIImage *)paperToFire
-		withRecorder:(AVAudioRecorder*)superRecorder
-	   FireOrDefence:(BOOL)isDefence;
+		withRecorder:(AVAudioRecorder *)superRecorder
+		withPlayMode:(NSString *)playMode;
 
 // reinitialization
 - (id) reInitWithPaperToFire:(UIImage *)paperToFire
-			   FireOrDefence:(BOOL)isDefence;
+				withPlayMode:(NSString *)playMode;
 // stop rendering
 - (id) stopRendering;
 

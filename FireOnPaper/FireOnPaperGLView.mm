@@ -22,8 +22,8 @@ float mousePointY2 = 0;
 
 - (id)initWithFrame:(CGRect)frame
 		paperToFire:(UIImage *)paperToFire
-	   withRecorder:(AVAudioRecorder*)superRecorder
-	  FireOrDefence:(BOOL)isDefence
+	   withRecorder:(AVAudioRecorder *)superRecorder
+	   withPlayMode:(NSString *)playMode
 {
     if (self = [super initWithFrame:frame]) {
 		// get the context
@@ -54,7 +54,7 @@ float mousePointY2 = 0;
 		m_height = CGRectGetHeight(frame);
 		
 		// reinitialzation
-		[self reInitWithPaperToFire:paperToFire FireOrDefence:isDefence];
+		[self reInitWithPaperToFire:paperToFire withPlayMode:playMode];
 		
 		// setup accelerometer attributes
         m_timestamp = CACurrentMediaTime();
@@ -90,14 +90,22 @@ float mousePointY2 = 0;
 }
 
 - (id)reInitWithPaperToFire:(UIImage *)paperToFire
-			  FireOrDefence:(BOOL)isDefence
+			   withPlayMode:(NSString *)playMode
 {
     if (m_engine != NULL)
     {
         delete m_engine;
         m_engine = NULL;
     }
-	isDefenceMode = isDefence;
+	
+	// get mode
+	if ([playMode isEqualToString:[NSString stringWithFormat:@"Defence"]]) {
+		play_mode = MODE_DEFENCE;
+	} else if ([playMode isEqualToString:[NSString stringWithFormat:@"3D Show"]]) {
+		play_mode = MODE_SHOW3D;
+	} else {
+		play_mode = MODE_FIRE;
+	}
 	
     // Generate and Bind Textures
 	CGImageRef brushImage;
@@ -133,7 +141,7 @@ float mousePointY2 = 0;
 	
 	// initialze fire on paper engine
     m_engine = new FireOnPaperEngine();
-    m_engine->Initialize(m_width, m_height, gl, textureImageID, isDefenceMode);
+    m_engine->Initialize(m_width, m_height, gl, textureImageID, play_mode);
     canBufferDestroyed = NO;
 	
     return self;
@@ -160,7 +168,7 @@ float mousePointY2 = 0;
     if (displayLink != nil) {
         float elapseSeconds = displayLink.timestamp - m_timestamp;
         m_timestamp = displayLink.timestamp;
-		NSLog(@"%lf FPS\n", 1.0 / elapseSeconds);
+		//NSLog(@"%lf FPS\n", 1.0 / elapseSeconds);
 		m_engine->UpdateAnimation(elapseSeconds);
     }
 	// render stage
@@ -314,10 +322,19 @@ float mousePointY2 = 0;
 	mousePointX1 = location.x/((float)m_width);
 	mousePointY1 = location.y/((float)m_height);
 	
-	// fire moder to fire or defence mode to defence
-	if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX1, mousePointY1);
-	else m_engine->OnTouchPaperToBurn(mousePointX1, mousePointY1);
-
+	// fire moder to fire, defence mode to defence or show3d mode to record touches
+	switch (play_mode) {
+		case MODE_DEFENCE:
+			m_engine->OnTouchChangePaperMaterial(mousePointX1, mousePointY1);
+			break;
+		case MODE_FIRE:
+			m_engine->OnTouchPaperToBurn(mousePointX1, mousePointY1);
+			break;
+		case MODE_SHOW3D:
+			break;
+		default:
+			break;
+	}
 	//NSLog(@"touches Begin at x = %f, y = %f", location.x, location.y);
 	//NSLog(@"touches Begin at x = %f, y = %f", mousePointX1, mousePointY1);
 }
@@ -333,10 +350,27 @@ float mousePointY2 = 0;
 	mousePointX2 = location.x/((float)m_width);
 	mousePointY2 = location.y/((float)m_height);
 	
-	// fire moder to fire or defence mode to defence
-    if (isDefenceMode) m_engine->OnTouchChangePaperMaterial(mousePointX2, mousePointY2);
-    else m_engine->OnTouchPaperToBurn(mousePointX2, mousePointY2);
-    
+	// fire moder to fire, defence mode to defence or show3d mode to change view point
+	double dy = (mousePointX2-mousePointX1);
+	double dx = (mousePointY2-mousePointY1);
+	double dz = 0;
+	double r = sqrt(dx*dx+dy*dy+dz*dz)*sqrt(m_width*m_height);
+	NSLog(@"dx = %f, dy = %f, r = %f", dx, dy, r);
+	
+	switch (play_mode) {
+		case MODE_DEFENCE:
+			m_engine->OnTouchChangePaperMaterial(mousePointX2, mousePointY2);
+			break;
+		case MODE_FIRE:
+			m_engine->OnTouchPaperToBurn(mousePointX2, mousePointY2);
+			break;
+		case MODE_SHOW3D:
+			if (r > 0) m_engine->ChangeViewPoint(r, dx, dy, dz);
+			break;
+		default:
+			break;
+	}
+	
 	//NSLog(@"touches Move at x = %f, y = %f", location.x, location.y);
 	//NSLog(@"touches Move at x = %f, y = %f", mousePointX2, mousePointY2);
 }

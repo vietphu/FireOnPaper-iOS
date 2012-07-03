@@ -33,6 +33,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 @synthesize menuButton;
 @synthesize fireButton;
 @synthesize defenceButton;
+@synthesize show3dButton;
 @synthesize moviePlayerController;
 @synthesize image;
 @synthesize movieURL;
@@ -99,6 +100,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[self setMenuButton:nil];
 	[self setFireButton:nil];
 	[self setDefenceButton:nil];
+    [self setShow3dButton:nil];
 	[self setImageView:nil];
 	[self setCameraButton:nil];
 	[self setPhotoButton:nil];
@@ -123,6 +125,7 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 	[menuButton release];
 	[fireButton release];
 	[defenceButton release];
+    [show3dButton release];
     [super dealloc];
 }
 
@@ -142,8 +145,6 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 
 - (void)SetupFire:(NSString *)Mode
 {
-	// get defence mode or fire mode
-	BOOL isDefence = [Mode isEqualToString:[NSString stringWithFormat:@"Defence"]];
 	// start animation
 	[UIView beginAnimations:@"View Flip" context:nil];
 	[UIView setAnimationDuration:1.25];
@@ -158,12 +159,12 @@ static UIImage *shrinkImage(UIImage *original, CGSize size);
 		imageView.image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
 		if (self.GLView == nil) { // alloc and initialize the fire on paper view
-			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder FireOrDefence:isDefence];
+			self.GLView = [[FireOnPaperGLView alloc] initWithFrame:[[UIScreen mainScreen] bounds] paperToFire:imageView.image withRecorder:recorder withPlayMode:Mode];
 		} else { // reinitialize the fire on paper view
-            [self.GLView reInitWithPaperToFire:imageView.image FireOrDefence:isDefence];
+            [self.GLView reInitWithPaperToFire:imageView.image withPlayMode:Mode];
         }
 		// display the fire on paper view
-		[self.view insertSubview:self.GLView atIndex:6];
+		[self.view insertSubview:self.GLView atIndex:100];
 	}
 	
 	// end animation

@@ -20,6 +20,10 @@
 #define FIRE_NUM 3000
 #define FIRE_SYSTEM_NUM 1
 
+#define MODE_DEFENCE 0
+#define MODE_FIRE 1
+#define MODE_SHOW3D 2
+
 class FireOnPaperEngine
 {
 private:
@@ -29,6 +33,8 @@ private:
 	OpenGLES::OpenGLESContext * gl;
 	// Environment
     Env * env;
+	// play mode
+	int play_mode;
 	// Paper
     Paper * paper;
 	// Fire
@@ -36,11 +42,18 @@ private:
     
 	// boolean for stopping rendering or not
     bool mIsStopRendering;
+	
+	double m_angle;
+	double m_dx;
+	double m_dy;
+	double m_dz;
 
 public:
 	FireOnPaperEngine();
     // initialization after new FireOnPaperEngine() or reinit
-	void Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, bool isDefenceMode);
+	void Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, int _play_mode);
+	// Change view point
+	void ChangeViewPoint(double angle, double x, double y, double z);
 	// Render stage (Drawing of particles)
 	void Render();
     // Update stage (Simulation of particles)

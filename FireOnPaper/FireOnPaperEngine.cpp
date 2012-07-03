@@ -15,11 +15,12 @@ FireOnPaperEngine::FireOnPaperEngine()
 }
 
 // initialization after new FireOnPaperEngine() or reinit
-void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, bool isDefenceMode)
+void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESContext * _gl, GLuint * _textureImageID, int _play_mode)
 {
 	// record the parameters
 	gl = _gl;
 	textureImageID = _textureImageID;
+	play_mode = _play_mode;
     
 	// initialize attributes of fire on paper engine
     env = new Env();    
@@ -31,8 +32,10 @@ void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESCont
             logicPaper[y][x] = true;
     paper->SetPaperLogicShape(logicPaper, 0, 0);
     paper->SetPaperWorldSize(PAPER_WIDTH, PAPER_HEIGHT, PAPER_LEFT_TOP_X, PAPER_LEFT_TOP_Y);
-    if (isDefenceMode) paper->GivePaperFirstFire();
+    if (play_mode != MODE_FIRE) paper->GivePaperFirstFire();
 	for (int i = 0; i < FIRE_SYSTEM_NUM; i++) fire_system[i].Initialize(gl, textureImageID, env, FIRE_NUM);
+	
+	m_angle = m_dx = m_dy = m_dz = 0;
 	
 	// OpenGLES state enable
 	gl->glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -44,19 +47,41 @@ void FireOnPaperEngine::Initialize(int width, int height, OpenGLES::OpenGLESCont
     mIsStopRendering = false;
 }
 
-// Render stage (Drawing of particles)
-void FireOnPaperEngine::Render()
-{	
-    if (mIsStopRendering)
+// Change view point
+void FireOnPaperEngine::ChangeViewPoint(double angle, double dx, double dy, double dz)
+{
+	if (mIsStopRendering)
         return;
 
-    // Change view point
-	gl->glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+	m_angle = angle;
+	m_dx = dx;
+	m_dy = dy;
+	m_dz = dz;
+	if (m_angle >= 180.0f) {
+		m_angle = 360.0f-m_angle;
+		m_dx = -m_dx;
+		m_dy = -m_dy;
+		m_dz = -m_dz;
+	}
+}
 
+// Render stage (Drawing of particles)
+void FireOnPaperEngine::Render()
+{
+    if (mIsStopRendering)
+        return;
+	
+	// Change view point
+	gl->glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	gl->glMatrixMode(GL_PROJECTION);
-	gl->glLoadIdentity();    
-    gl->glOrthof(-SCREEN_WIDTH/2, SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, SCREEN_HEIGHT/2, -10.0f, 10.0f);
-    
+	gl->glLoadIdentity();
+    if (play_mode != MODE_SHOW3D) gl->glOrthof(-SCREEN_WIDTH/2, SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, SCREEN_HEIGHT/2, -10.0f, 10.0f);
+	else {
+		gl->glFrustumf(-SCREEN_WIDTH/2, SCREEN_WIDTH/2, -SCREEN_HEIGHT/2, SCREEN_HEIGHT/2, 5.0f, 100.0f);
+		gl->glTranslatef(0.0, 0.0, -5.8f-(90.0f-fabs(m_angle-90.0f))/3.0f);
+		gl->glRotatef(m_angle, m_dx, m_dy, m_dz);
+	}
+	
 	//render paper and fire
     paper->Render();
 	for (int i = 0; i < FIRE_SYSTEM_NUM; i++) fire_system[i].Render();

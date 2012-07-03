@@ -502,7 +502,7 @@ void Paper::GenVOB()
     int y = 0;
     while ( vertex != mPaperVertices.end() ) 
     {
-        vertex->Position = vec3((float)(x*widthperx + mPaperWorldLeftTopX), (float)(-y*lengthpery + mPaperWorldLeftTopY), -1.0);
+        vertex->Position = vec3((float)(x*widthperx + mPaperWorldLeftTopX), (float)(-y*lengthpery + mPaperWorldLeftTopY), 0.0);
         vertex->Texture = vec2((float)x/(float)PAPER_LOGIC_WIDTH, (float)y/(float)PAPER_LOGIC_HEIGHT);
                 
         vertex++;
