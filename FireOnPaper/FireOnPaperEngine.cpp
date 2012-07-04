@@ -57,6 +57,7 @@ void FireOnPaperEngine::ChangeViewPoint(double angle, double dx, double dy, doub
 	m_dx = dx;
 	m_dy = dy;
 	m_dz = dz;
+	// if rotate more
 	if (m_angle >= 180.0f) {
 		m_angle = 360.0f-m_angle;
 		m_dx = -m_dx;

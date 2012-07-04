@@ -43,6 +43,7 @@ private:
 	// boolean for stopping rendering or not
     bool mIsStopRendering;
 	
+	// Change view point attributes
 	double m_angle;
 	double m_dx;
 	double m_dy;
